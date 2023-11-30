@@ -1,0 +1,12 @@
+config_version=5
+
+[application]
+
+config/name="alttp-swamp-palace-godot"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://ico.png"
+config/tags=PackedStringArray("arpg", "项目")
+
+[dotnet]
+
+project/assembly_name="alttp-swamp-palace-godot"
