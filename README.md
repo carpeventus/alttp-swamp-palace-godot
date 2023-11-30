@@ -12,4 +12,4 @@ Most resources are download from the following
 
 ## Copyright Disclaimer
 
-This project is intended solely for educational purposes. No individual or organization. is permitted to use any elements owned by Nintendo for commercial purposes. We disclaim any legal responsibility for the use of Nintendo's elements in violation of this policy.
+This project is intended solely for educational purposes. No individual or organization is permitted to use any elements owned by Nintendo for commercial purposes. We disclaim any legal responsibility for the use of Nintendo's elements in violation of this policy.
