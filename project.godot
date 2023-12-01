@@ -13,8 +13,13 @@ config_version=5
 config/name="alttp-swamp-palace-godot"
 config/tags=PackedStringArray("arpg", "项目")
 run/main_scene="res://scenes/light_world.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://ico.png"
+
+[debug]
+
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/untyped_declaration=2
 
 [display]
 

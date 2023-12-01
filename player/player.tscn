@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
-[ext_resource type="Script" path="res://player/Player.cs" id="1_nauuu"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
 
 [sub_resource type="Animation" id="Animation_7l4dy"]
 length = 0.001
@@ -560,7 +560,7 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_nauuu")
+script = ExtResource("1_x72g7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
