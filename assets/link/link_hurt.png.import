@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vfrj0xne8j0p"
-path="res://.godot/imported/sword.tunic1.png-508d63320a308bf4a4f808164ed53564.ctex"
+uid="uid://bly4g2k4hew4r"
+path="res://.godot/imported/link_hurt.png-bbb449ce2b535b1b45bd64edc38a777a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://component/sword.tunic1.png"
-dest_files=["res://.godot/imported/sword.tunic1.png-508d63320a308bf4a4f808164ed53564.ctex"]
+source_file="res://assets/link/link_hurt.png"
+dest_files=["res://.godot/imported/link_hurt.png-bbb449ce2b535b1b45bd64edc38a777a.ctex"]
 
 [params]
 

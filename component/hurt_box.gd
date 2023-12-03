@@ -2,7 +2,7 @@ extends Area2D
 
 @export var health_component: HealthComponent
 
-signal hurt_signal
+signal hurt_signal(damage: Damage)
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -13,5 +13,9 @@ func _on_area_entered(area: Area2D) -> void:
 	var hitbox := area as HitBox
 	if health_component:
 		health_component.take_damge(hitbox.damage)
-	hurt_signal.emit()
+	var damage_instantce: Damage = Damage.new()
+	damage_instantce.amount = hitbox.damage
+	# 设置伤害来源为Owner
+	damage_instantce.source = hitbox.owner
+	hurt_signal.emit(damage_instantce)
 	

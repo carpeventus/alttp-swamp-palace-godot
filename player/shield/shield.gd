@@ -15,7 +15,7 @@ func init_animtion_params() -> void:
 	animation_tree["parameters/ShieldWalk/blend_position"] =  Vector2.ZERO
 
 func update_animation_params(player: Player) -> void:
-	if player.velocity.length() > 0:
+	if player.input_direction.length() > 0:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/moving"] = true
 	else:
