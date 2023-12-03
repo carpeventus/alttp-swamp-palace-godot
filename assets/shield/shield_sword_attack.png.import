@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfjkml21hqv12"
-path="res://.godot/imported/walking.shield.png-b0d116e2a083389f21912f1cbb5c3741.ctex"
+uid="uid://vv2fbts2h5rm"
+path="res://.godot/imported/shield_sword_attack.png-fb62a458fd6eb04f47e7ecfbaf99e6ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/link/walking.shield.png"
-dest_files=["res://.godot/imported/walking.shield.png-b0d116e2a083389f21912f1cbb5c3741.ctex"]
+source_file="res://assets/shield/shield_sword_attack.png"
+dest_files=["res://.godot/imported/shield_sword_attack.png-fb62a458fd6eb04f47e7ecfbaf99e6ee.ctex"]
 
 [params]
 

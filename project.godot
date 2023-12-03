@@ -13,8 +13,14 @@ config_version=5
 config/name="alttp-swamp-palace-godot"
 config/tags=PackedStringArray("arpg", "项目")
 run/main_scene="res://scenes/light_world.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="AlttpData"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://ico.png"
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://icon.png"
 
 [debug]
 
@@ -28,10 +34,24 @@ window/size/viewport_height=270
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
 project/assembly_name="alttp-swamp-palace-godot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/com.timothyqiu.animation-resetter/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "pink",
+"res://component/": "blue",
+"res://player/": "green",
+"res://scenes/": "yellow"
+}
 
 [input]
 
@@ -55,6 +75,18 @@ move_up={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
 ]
 }
+sword_attack={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Obstacle"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="HitBox"
 
 [rendering]
 
