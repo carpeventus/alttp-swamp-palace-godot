@@ -66,30 +66,30 @@ func _on_hurt_body_entered(body: Node2D) -> void:
 		damage_instance.amount = body.damage
 		damage_instance.source = body
 		damage_hold = damage_instance
-		check_damage(damage_hold)
+		check_take_damage()
 
 func _on_hurt_body_exited(body: Node2D) -> void:
 	damage_hold = null
 
-func check_damage(damage: Damage) -> void:
-	# 无敌或者没有删伤害
+func check_take_damage() -> void:
+	# 无敌或者没有伤害
 	if not damage_immune_timer.is_stopped() || damage_hold == null:
 		return
 	
-	health_compoent.take_damge(damage.amount)
-	hurt_signal.emit(damage)
+	# 减少hp并发送受伤信号
+	health_compoent.take_damge(damage_hold.amount)
+	hurt_signal.emit(damage_hold)
 	damage_immune_timer.start()
 
 
 func _on_damage_immune_timer_timeout() -> void:
-	check_damage(damage_hold)
+	check_take_damage()
 
 func be_hurt() -> void:
 	animation_tree["parameters/Hurt/blend_position"] = face_direction
 	anim_playback.travel("Hurt")
 	var attack_direction: Vector2 = (global_position - damage_hold.source.global_position).normalized()
 	velocity = knockback_force * attack_direction
-	
 
 func is_dead() -> bool:
 	return false
