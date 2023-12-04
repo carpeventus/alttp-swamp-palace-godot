@@ -1,5 +1,7 @@
 extends PlayerState
 
+@export var move_speed: float = 60.0
+
 func logic_update(delta: float) -> void:
 	super.logic_update(delta)
 	
@@ -11,5 +13,5 @@ func logic_update(delta: float) -> void:
 
 
 func physics_update(delta: float) -> void:
-	player.velocity = player.input_direction * player.move_speed
+	player.velocity = player.input_direction * move_speed
 

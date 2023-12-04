@@ -14,17 +14,16 @@ func init_animtion_params() -> void:
 	animation_tree["parameters/ShieldIdle/blend_position"] = Vector2.DOWN
 	animation_tree["parameters/ShieldWalk/blend_position"] =  Vector2.ZERO
 
-func update_animation_params(player: Player) -> void:
-	if player.input_direction.length() > 0:
+func update_animation(input_direction: Vector2) -> void:
+	if input_direction.length() > 0:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/moving"] = true
+		animation_tree["parameters/ShieldIdle/blend_position"] = input_direction
+		animation_tree["parameters/ShieldWalk/blend_position"] = input_direction
 	else:
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/moving"] = false
 
-	if player.input_direction.length() > 0:
-		animation_tree["parameters/ShieldIdle/blend_position"] = player.input_direction
-		animation_tree["parameters/ShieldWalk/blend_position"] = player.input_direction
 
 func attack(face_direction: Vector2) -> void:
 	animation_tree["parameters/ShieldAttack/blend_position"] = face_direction

@@ -1,6 +1,5 @@
 class_name Sword extends Node2D
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback= animation_tree["parameters/playback"]
 
