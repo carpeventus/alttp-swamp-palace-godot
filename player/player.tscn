@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://2wdtrpxfh2ae"]
+[gd_scene load_steps=39 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
@@ -11,8 +11,10 @@
 [ext_resource type="Script" path="res://player/state_machine/player_attack_state.gd" id="5_y6gwr"]
 [ext_resource type="PackedScene" uid="uid://deik1lotbq6b4" path="res://player/shield/shield.tscn" id="6_gdodu"]
 [ext_resource type="Script" path="res://player/state_machine/player_hurt_state.gd" id="6_if6j2"]
+[ext_resource type="Script" path="res://player/player_dead_state.gd" id="7_boq72"]
 [ext_resource type="PackedScene" uid="uid://bkuwq2xt54gha" path="res://player/sword/sword.tscn" id="7_xqkuf"]
 [ext_resource type="Texture2D" uid="uid://bly4g2k4hew4r" path="res://assets/link/link_hurt.png" id="9_4nyjg"]
+[ext_resource type="Texture2D" uid="uid://m8d2nbgul50g" path="res://assets/link/link_dying.png" id="12_6fq2b"]
 
 [sub_resource type="Animation" id="Animation_7l4dy"]
 length = 0.001
@@ -67,7 +69,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -79,7 +81,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -89,9 +91,84 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_x3ytx"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_6fq2b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 320, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainWeapon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShiledEquipment:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_7fxe4"]
 resource_name = "hurt_down"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,7 +220,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -155,19 +232,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MainWeapon/Sword:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jwuqw"]
 resource_name = "hurt_left"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -219,7 +296,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -231,19 +308,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MainWeapon/Sword:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jcmoo"]
 resource_name = "hurt_right"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -295,7 +372,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -307,19 +384,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MainWeapon/Sword:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cd23d"]
 resource_name = "hurt_up"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -371,7 +448,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -383,14 +460,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MainWeapon/Sword:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jyhl3"]
@@ -448,7 +525,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -460,7 +537,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -523,7 +600,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -535,7 +612,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -598,7 +675,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -610,7 +687,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -673,7 +750,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -685,7 +762,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -750,7 +827,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -762,7 +839,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -827,7 +904,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -839,7 +916,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -904,7 +981,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -916,7 +993,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -981,7 +1058,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -993,7 +1070,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1059,7 +1136,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1071,7 +1148,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1137,7 +1214,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1149,7 +1226,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1215,7 +1292,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1227,7 +1304,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1293,7 +1370,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainWeapon/Sword:visible")
+tracks/4/path = NodePath("MainWeapon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1305,7 +1382,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ShiledEquipment/Shield:visible")
+tracks/5/path = NodePath("ShiledEquipment:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1318,6 +1395,7 @@ tracks/5/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hujyj"]
 _data = {
 "RESET": SubResource("Animation_7l4dy"),
+"dying": SubResource("Animation_x3ytx"),
 "hurt_down": SubResource("Animation_7fxe4"),
 "hurt_left": SubResource("Animation_jwuqw"),
 "hurt_right": SubResource("Animation_jcmoo"),
@@ -1401,13 +1479,16 @@ player = NodePath("../..")
 script = ExtResource("4_4riik")
 player = NodePath("../..")
 
-[node name="PlayerAttackState" type="Node" parent="StateMachine"]
+[node name="PlayerAttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("5_y6gwr")
-player = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":2,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":1,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":ExtResource("1_x72g7"))
-
+player = NodePath("../..")
 
 [node name="PlayerHurtState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_if6j2")
+player = NodePath("../..")
+
+[node name="PlayerDeadState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("7_boq72")
 player = NodePath("../..")
 
 [node name="HealthCompoent" parent="." instance=ExtResource("2_ov2ko")]
@@ -1456,10 +1537,15 @@ material = SubResource("ShaderMaterial_g074g")
 [node name="Shield" parent="ShiledEquipment" instance=ExtResource("6_gdodu")]
 
 [node name="MainWeapon" type="Node2D" parent="."]
-
-[node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
 visible = false
 
+[node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
+
+[node name="CollisionPolygon2D" parent="MainWeapon/Sword/HitBox" index="0"]
+polygon = PackedVector2Array(-1, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, -1)
+disabled = true
+
 [node name="DamageImmuneTimer" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
+
+[editable path="MainWeapon/Sword"]

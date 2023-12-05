@@ -14,11 +14,9 @@ class_name Player extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine as StateMachine
 #endregion
 
-#region signals
-signal hurt_signal(damage: Damage)
-#endregion
-
-var damage_hold: Damage
+var is_dead: bool = false
+var damage_hold: Dictionary = {}
+var hurt_blink_tween: Tween
 
 var input_direction: Vector2 = Vector2.ZERO
 var face_direction: Vector2 = Vector2.DOWN
@@ -28,6 +26,7 @@ func _ready() -> void:
 	#region signals
 	hurt_area.body_entered.connect(_on_hurt_body_entered) # 敌人等是body
 	hurt_area.body_exited.connect(_on_hurt_body_exited)
+	health_compoent.died_signal.connect(_on_dead)
 	damage_immune_timer.timeout.connect(_on_damage_immune_timer_timeout)
 	#endregion
 	init_animtion_params()
@@ -68,38 +67,50 @@ func _on_hurt_body_entered(body: Node2D) -> void:
 		var damage_instance: Damage = Damage.new()
 		damage_instance.amount = body.damage
 		damage_instance.source = body
-		damage_hold = damage_instance
+		damage_hold[body.name] =  damage_instance
 		check_take_damage()
 
 func _on_hurt_body_exited(body: Node2D) -> void:
-	damage_hold = null
+	damage_hold.erase(body.name)
 
 func check_take_damage() -> void:
-	# 无敌或者没有伤害
-	if not damage_immune_timer.is_stopped() || damage_hold == null:
+	# 无敌、无伤害来源或死亡
+	if is_dead || not damage_immune_timer.is_stopped() || damage_hold.is_empty():
 		return
 	
-	# 减少hp并发送受伤信号
-	health_compoent.take_damge(damage_hold.amount)
-	hurt_signal.emit(damage_hold)
+	# 从任意状态转为受伤状态
+	state_machine.change_state("PlayerHurtState")
+	
+func start_immune() -> void:
 	damage_immune_timer.start()
+	if hurt_blink_tween and hurt_blink_tween.is_running():
+		hurt_blink_tween.kill()
+	hurt_blink_tween = create_tween()
+	hurt_blink_tween.set_loops()
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.0, 0.1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.5, 0.1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _on_damage_immune_timer_timeout() -> void:
+	if hurt_blink_tween:
+		hurt_blink_tween.kill()
+	# 将颜色恢复原样
+	modulate = Color.WHITE
 	check_take_damage()
 
-func is_dead() -> bool:
-	return false
+func _on_dead() -> void:
+	is_dead = true
 #endregion
 	
-#region init	
+#region init
 func init_animtion_params() -> void:
 	init_body_animation_params()
 	# 盾的动画参数初始化
 	shield.init_animtion_params()
+	
+	
 func init_body_animation_params() -> void:
 	animation_tree["parameters/conditions/idle"] = true
 	animation_tree["parameters/conditions/moving"] = false
 	animation_tree["parameters/Idle/blend_position"] = Vector2.DOWN
 	animation_tree["parameters/Walk/blend_position"] =  Vector2.ZERO
-
 #endregion

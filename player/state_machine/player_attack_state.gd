@@ -5,6 +5,8 @@ func on_enter() -> void:
 	player.velocity = Vector2.ZERO
 	sword_attack()
 	await player.animation_tree.animation_finished
+	if state_machine.current_state.name == "PlayerDeadState":
+		return
 	if is_zero_approx(player.input_direction.length()):
 		state_machine.change_state("PlayerIdleState")
 	else:

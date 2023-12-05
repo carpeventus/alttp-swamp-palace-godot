@@ -15,7 +15,6 @@ func heal(hp: int) -> void:
 
 func take_damge(damage: int) -> void:
 	current_health = clamp(current_health - damage, 0 , max_health)
-	died_signal.emit()
 	if damage > 0:
 		health_decreased_signal.emit()
 	elif damage < 0:

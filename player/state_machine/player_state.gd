@@ -6,17 +6,14 @@ var state_machine: StateMachine
 
 func _ready() -> void:
 	state_machine = get_parent() as StateMachine
-	player.hurt_signal.connect(_on_player_hurt)
 
 
 func logic_update(delta: float) -> void:
 	update_animation_params()
-	if player.is_dead():
+	# 死亡且当前不是死亡状态，切换到死亡状态;受伤状态中先不立即切换到死亡
+	if player.is_dead and state_machine.current_state.name != "PlayerDeadState" and state_machine.current_state.name != "PlayerHurtState":
 		state_machine.change_state("PlayerDeadState")
-
-func _on_player_hurt(damage: Damage) -> void:
-	state_machine.change_state("PlayerHurtState")
-
+	
 
 func update_animation_params() -> void:
 	if player.input_direction.length() > 0:
