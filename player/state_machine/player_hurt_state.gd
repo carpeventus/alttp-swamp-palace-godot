@@ -3,7 +3,6 @@ extends PlayerState
 @export var knockback_force: float = 70.0
 
 func on_enter() -> void:
-	player.velocity = Vector2.ZERO
 	be_hurt()
 	await player.animation_tree.animation_finished
 	if state_machine.current_state.name == "PlayerDeadState":
@@ -19,8 +18,10 @@ func on_enter() -> void:
 	
 	
 func be_hurt() -> void:
+	player.velocity = Vector2.ZERO
 	player.animation_tree["parameters/Hurt/blend_position"] = player.face_direction
 	player.anim_playback.travel("Hurt")
+	player.forbidden_input = true
 	# 选择第一个damage造成伤害，减少hp（godot的字典保持插入时的顺序）
 	var damage: Damage = player.damage_hold.values()[0] as Damage
 	player.health_compoent.take_damge(damage.amount)
@@ -30,3 +31,5 @@ func be_hurt() -> void:
 		player.velocity = knockback_force * attack_direction
 		player.start_immune()
 
+func on_exit() -> void:
+	player.forbidden_input = false

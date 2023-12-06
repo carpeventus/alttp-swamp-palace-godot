@@ -16,6 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://bly4g2k4hew4r" path="res://assets/link/link_hurt.png" id="9_4nyjg"]
 [ext_resource type="Texture2D" uid="uid://m8d2nbgul50g" path="res://assets/link/link_dying.png" id="12_6fq2b"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_exhh7"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssik4"]
+radius = 6.0
+
 [sub_resource type="Animation" id="Animation_7l4dy"]
 length = 0.001
 tracks/0/type = "value"
@@ -1414,12 +1420,6 @@ _data = {
 "walk_up": SubResource("Animation_ewakd")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7ti28"]
-radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ssik4"]
-radius = 6.0
-
 [sub_resource type="Shader" id="Shader_fd04w"]
 code = "shader_type canvas_item;
 
@@ -1494,6 +1494,18 @@ player = NodePath("../..")
 [node name="HealthCompoent" parent="." instance=ExtResource("2_ov2ko")]
 max_health = 6
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -12)
+shape = SubResource("CircleShape2D_exhh7")
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2(2.08165e-12, -12)
+shape = SubResource("CircleShape2D_ssik4")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hujyj")
@@ -1513,18 +1525,6 @@ parameters/Hurt/blend_position = Vector2(-0.0961844, 0.894737)
 parameters/Idle/blend_position = Vector2(-0.461049, -0.114173)
 parameters/Walk/blend_position = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, -12)
-shape = SubResource("CircleShape2D_7ti28")
-
-[node name="HurtArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2(2.08165e-12, -12)
-shape = SubResource("CircleShape2D_ssik4")
-
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_2jxos")
 offset = Vector2(2.08165e-12, -16)
@@ -1541,11 +1541,8 @@ visible = false
 
 [node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
 
-[node name="CollisionPolygon2D" parent="MainWeapon/Sword/HitBox" index="0"]
-polygon = PackedVector2Array(-1, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12, -1)
-disabled = true
-
 [node name="DamageImmuneTimer" type="Timer" parent="."]
+wait_time = 1.2
 one_shot = true
 
 [editable path="MainWeapon/Sword"]

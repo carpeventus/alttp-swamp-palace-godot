@@ -15,6 +15,7 @@ class_name Player extends CharacterBody2D
 #endregion
 
 var is_dead: bool = false
+var forbidden_input: bool = false
 var damage_hold: Dictionary = {}
 var hurt_blink_tween: Tween
 
@@ -40,13 +41,15 @@ func _physics_process(delta: float) -> void:
 	
 func _process(delta: float) -> void:
 	# 先处理输入等前置条件，然后调用状态机更新逻辑
-	update_direction()
-	
+	handle_input()
+	update_current_face_direction()
 	state_machine.current_state.logic_update(delta)
 
-func update_direction() -> void:
+func handle_input() -> void:
+	if forbidden_input:
+		return
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	update_current_face_direction()
+	
 
 func update_current_face_direction() -> void:
 	if is_zero_approx(input_direction.length()):
@@ -87,8 +90,8 @@ func start_immune() -> void:
 		hurt_blink_tween.kill()
 	hurt_blink_tween = create_tween()
 	hurt_blink_tween.set_loops()
-	hurt_blink_tween.tween_property(self, "modulate:a", 0.0, 0.1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	hurt_blink_tween.tween_property(self, "modulate:a", 0.5, 0.1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.0, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.6, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _on_damage_immune_timer_timeout() -> void:
 	if hurt_blink_tween:
@@ -99,6 +102,7 @@ func _on_damage_immune_timer_timeout() -> void:
 
 func _on_dead() -> void:
 	is_dead = true
+	
 #endregion
 	
 #region init
