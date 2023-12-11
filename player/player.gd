@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+@export var sword_loading_need_hold_time: float = 0.24
 
 #region Onready
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -22,6 +23,9 @@ var hurt_blink_tween: Tween
 var input_direction: Vector2 = Vector2.ZERO
 var face_direction: Vector2 = Vector2.DOWN
 
+var sword_loading_hold_time: float = 0.0
+var is_request_loading: bool = false
+
 func _ready() -> void:
 	animation_tree.active = true
 	#region signals
@@ -40,30 +44,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _process(delta: float) -> void:
-	# 先处理输入等前置条件，然后调用状态机更新逻辑
-	handle_input()
-	update_current_face_direction()
+	handle_input(delta)
 	state_machine.current_state.logic_update(delta)
 
-func handle_input() -> void:
-	if forbidden_input:
-		return
-	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	
-
-func update_current_face_direction() -> void:
-	if is_zero_approx(input_direction.length()):
-		return
-	# 先判定左右，我们规定当同时按上和右时，最终呈现朝右的动画；总之，同时按下多个方向时，左右优先于上下的动画
-	if input_direction.x > 0:
-		face_direction = Vector2.RIGHT
-	elif input_direction.x < 0:
-		face_direction = Vector2.LEFT
-	elif input_direction.y > 0:
-		face_direction = Vector2.DOWN
-	elif input_direction.y < 0:
-		face_direction = Vector2.UP
-		
 #region hurtdead
 func _on_hurt_body_entered(body: Node2D) -> void:
 	if body is Enemy:
@@ -90,8 +73,8 @@ func start_immune() -> void:
 		hurt_blink_tween.kill()
 	hurt_blink_tween = create_tween()
 	hurt_blink_tween.set_loops()
-	hurt_blink_tween.tween_property(self, "modulate:a", 0.0, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	hurt_blink_tween.tween_property(self, "modulate:a", 0.6, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.2, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	hurt_blink_tween.tween_property(self, "modulate:a", 0.8, 0.05).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _on_damage_immune_timer_timeout() -> void:
 	if hurt_blink_tween:
@@ -118,3 +101,18 @@ func init_body_animation_params() -> void:
 	animation_tree["parameters/Idle/blend_position"] = Vector2.DOWN
 	animation_tree["parameters/Walk/blend_position"] =  Vector2.ZERO
 #endregion
+
+
+func handle_input(delta: float) -> void:
+	if forbidden_input:
+		return
+	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+	if Input.is_action_pressed("sword_attack"):
+		sword_loading_hold_time += delta
+	else:
+		sword_loading_hold_time = 0.0
+		
+	if sword_loading_hold_time > sword_loading_need_hold_time:
+		is_request_loading = true
+	else:
+		is_request_loading = false

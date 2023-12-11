@@ -6,6 +6,9 @@ func logic_update(delta: float) -> void:
 	if Input.is_action_just_pressed("sword_attack"):
 		state_machine.change_state("PlayerAttackState")
 	
+	if player.is_request_loading:
+		state_machine.change_state("PlayerLoadingIdleState")
+	
 	if not is_zero_approx(player.input_direction.length()):
 		state_machine.change_state("PlayerWalkState")
 
