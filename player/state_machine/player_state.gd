@@ -36,6 +36,7 @@ func update_moving_conditions() -> void:
 	else:
 		player.animation_tree["parameters/conditions/idle"] = true
 		player.animation_tree["parameters/conditions/moving"] = false
+		
 	player.shield.update_moving_conditions(player.input_direction)
 
 

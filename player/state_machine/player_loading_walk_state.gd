@@ -26,8 +26,11 @@ func loading_walk() -> void:
 	player.animation_tree["parameters/LoadingWalk/blend_position"] = player.face_direction
 	player.animation_tree["parameters/conditions/loading_cancel"] = false
 	player.anim_playback.travel("LoadingWalk")
+	
 	player.shield.loading_walk(player.face_direction)
+	player.sword.loading_walk(player.face_direction)
 
 func cancel_loading() -> void:
 	player.animation_tree["parameters/conditions/loading_cancel"] = true
 	player.shield.cancel_loading()
+	player.sword.cancel_loading()

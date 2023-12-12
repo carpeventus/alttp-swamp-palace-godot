@@ -21,8 +21,11 @@ func loading_idle() -> void:
 	player.animation_tree["parameters/LoadingIdle/blend_position"] = player.face_direction
 	player.animation_tree["parameters/conditions/loading_cancel"] = false
 	player.anim_playback.travel("LoadingIdle")
+	
 	player.shield.loading_idle(player.face_direction)
+	player.sword.loading_idle(player.face_direction)
 
 func cancel_loading() -> void:
 	player.animation_tree["parameters/conditions/loading_cancel"] = true
 	player.shield.cancel_loading()
+	player.sword.cancel_loading()

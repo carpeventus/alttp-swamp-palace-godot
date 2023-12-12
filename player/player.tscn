@@ -482,7 +482,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_jyhl3"]
 resource_name = "idle_down"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -558,6 +557,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_jvab3"]
 resource_name = "idle_left"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -633,6 +633,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_s0haq"]
 resource_name = "idle_right"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -708,6 +709,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_gpwae"]
 resource_name = "idle_up"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -784,7 +786,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_ke36t"]
 resource_name = "loading_idle_down"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -861,7 +862,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_8t5uo"]
 resource_name = "loading_idle_left"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -938,7 +938,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_5npls"]
 resource_name = "loading_idle_right"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1015,7 +1014,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_6wq0h"]
 resource_name = "loading_idle_up"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

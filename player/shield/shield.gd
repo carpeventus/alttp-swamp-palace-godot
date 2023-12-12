@@ -34,7 +34,6 @@ func attack(face_direction: Vector2) -> void:
 
 
 func loading_idle(face_direction: Vector2) -> void:
-	# loading之间切换，不更新朝向
 	animation_tree["parameters/ShieldLoadingIdle/blend_position"] = face_direction
 	animation_tree["parameters/conditions/loading_cancel"] = false
 	anim_playback.travel("ShieldLoadingIdle")
