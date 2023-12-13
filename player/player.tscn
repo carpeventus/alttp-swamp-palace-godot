@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://2wdtrpxfh2ae"]
+[gd_scene load_steps=57 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
@@ -16,8 +16,11 @@
 [ext_resource type="Script" path="res://player/state_machine/player_loading_walk_state.gd" id="8_c2nda"]
 [ext_resource type="Script" path="res://player/state_machine/player_loading_idle_state.gd" id="9_1jqu5"]
 [ext_resource type="Texture2D" uid="uid://bly4g2k4hew4r" path="res://assets/link/link_hurt.png" id="9_4nyjg"]
+[ext_resource type="Script" path="res://player/player_spin_attack_state.gd" id="10_sxt8g"]
 [ext_resource type="Texture2D" uid="uid://m8d2nbgul50g" path="res://assets/link/link_dying.png" id="12_6fq2b"]
 [ext_resource type="Texture2D" uid="uid://d3txcjb6jufns" path="res://assets/link/link_loading.png" id="13_27ofi"]
+[ext_resource type="Texture2D" uid="uid://ctwqttr455wfi" path="res://assets/link/link_idle.png" id="14_etot4"]
+[ext_resource type="Texture2D" uid="uid://buttl34qafj8y" path="res://assets/link/link_spin_attack.png" id="18_e2vp4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_exhh7"]
 radius = 6.0
@@ -37,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_2jxos")]
+"values": [ExtResource("14_etot4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -49,7 +52,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 96, 32, 32)]
+"values": [Rect2(96, 0, 32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -492,7 +495,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_2jxos")]
+"values": [ExtResource("14_etot4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -504,7 +507,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 96, 32, 32)]
+"values": [Rect2(96, 0, 32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -568,7 +571,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_2jxos")]
+"values": [ExtResource("14_etot4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -580,7 +583,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 64, 32, 32)]
+"values": [Rect2(64, 0, 32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -644,7 +647,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_2jxos")]
+"values": [ExtResource("14_etot4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -656,7 +659,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(2.08165e-12, 0, 32, 32)]
+"values": [Rect2(0, 0, 32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -720,7 +723,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_2jxos")]
+"values": [ExtResource("14_etot4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -732,7 +735,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 32, 32, 32)]
+"values": [Rect2(32, 0, 32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2015,6 +2018,218 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_vip1b"]
+resource_name = "spin_attack_down"
+length = 0.66
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_e2vp4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 96, 704, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_5c2sj"]
+resource_name = "spin_attack_up"
+length = 0.66
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_e2vp4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 32, 704, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_2qhru"]
+resource_name = "spin_attack_left"
+length = 0.66
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_e2vp4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 64, 704, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_76bb0"]
+resource_name = "spin_attack_right"
+length = 0.66
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_e2vp4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 704, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hujyj"]
 _data = {
 "RESET": SubResource("Animation_7l4dy"),
@@ -2035,6 +2250,10 @@ _data = {
 "loading_walk_left": SubResource("Animation_lopsr"),
 "loading_walk_right": SubResource("Animation_kxp0n"),
 "loading_walk_up": SubResource("Animation_l8i3x"),
+"spin_attack_down": SubResource("Animation_vip1b"),
+"spin_attack_left": SubResource("Animation_2qhru"),
+"spin_attack_right": SubResource("Animation_76bb0"),
+"spin_attack_up": SubResource("Animation_5c2sj"),
 "sword_attack_down": SubResource("Animation_rxj4d"),
 "sword_attack_left": SubResource("Animation_d82w4"),
 "sword_attack_right": SubResource("Animation_h2kuh"),
@@ -2125,6 +2344,10 @@ player = NodePath("../..")
 script = ExtResource("9_1jqu5")
 player = NodePath("../..")
 
+[node name="PlayerSpinAttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("10_sxt8g")
+player = NodePath("../..")
+
 [node name="HealthCompoent" parent="." instance=ExtResource("2_ov2ko")]
 max_health = 6
 
@@ -2164,10 +2387,10 @@ parameters/SpinAttack/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("1_2jxos")
+texture = ExtResource("14_etot4")
 offset = Vector2(2.08165e-12, -16)
 region_enabled = true
-region_rect = Rect2(0, 96, 32, 32)
+region_rect = Rect2(96, 0, 32, 32)
 
 [node name="ShiledEquipment" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_g074g")

@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 @export var sword_loading_need_hold_time: float = 0.24
-
+@export var spin_attack_need_charge_time: float = 1.0
 #region Onready
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -24,7 +24,9 @@ var input_direction: Vector2 = Vector2.ZERO
 var face_direction: Vector2 = Vector2.DOWN
 
 var sword_loading_hold_time: float = 0.0
+var spin_attack_charge_time: float = 0.0
 var is_request_loading: bool = false
+var is_spin_attck_ready: bool = false
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -109,10 +111,16 @@ func handle_input(delta: float) -> void:
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	if Input.is_action_pressed("sword_attack"):
 		sword_loading_hold_time += delta
+		if sword_loading_hold_time > sword_loading_need_hold_time:
+			is_request_loading = true
+		# loading时才能蓄力
+		if is_request_loading:
+			spin_attack_charge_time += delta
+		if spin_attack_charge_time > spin_attack_need_charge_time:
+			is_spin_attck_ready = true
 	else:
 		sword_loading_hold_time = 0.0
-		
-	if sword_loading_hold_time > sword_loading_need_hold_time:
-		is_request_loading = true
-	else:
+		spin_attack_charge_time = 0.0
 		is_request_loading = false
+		
+

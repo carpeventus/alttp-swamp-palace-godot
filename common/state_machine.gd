@@ -28,7 +28,7 @@ func change_state(next_state_name: String) -> void:
 		return
 	
 	if debug:
-		print(current_state.name + " -> " + next_state_name)
+		print("[" + str(Time.get_ticks_msec()) + "]" + current_state.name + " -> " + next_state_name)
 		
 	current_state.on_exit()
 	next.on_enter()
