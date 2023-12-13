@@ -6,17 +6,14 @@ func logic_update(delta: float) -> void:
 	# 回旋斩准备就绪且松开攻击按键
 	if Input.is_action_just_released("sword_attack") and player.is_spin_attck_ready:
 		state_machine.change_state("PlayerSpinAttackState")
-
-	if not player.is_request_loading:
-		print("turn idle")
+	elif not player.is_request_loading:
+		print(state_machine.current_state.name + " turn idle")
 		cancel_loading()
 		state_machine.change_state("PlayerIdleState")
-	
-	if not is_zero_approx(player.input_direction.length()):
+	elif not is_zero_approx(player.input_direction.length()):
 		state_machine.change_state("PlayerLoadingWalkState")
 
 func on_enter() -> void:
-	print("enter loading idle")
 	player.velocity = Vector2.ZERO
 	loading_idle()
 
