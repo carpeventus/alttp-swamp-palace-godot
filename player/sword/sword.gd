@@ -2,9 +2,13 @@ class_name Sword extends Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback= animation_tree["parameters/playback"]
+@onready var hit_box: HitBox = $HitBox
+
+var base_damage: float
 
 func _ready() -> void:
 	animation_tree.active = true
+	base_damage = hit_box.damage
 
 func attack(direction: Vector2) -> void:
 	animation_tree["parameters/SwordAttack/blend_position"] = direction
@@ -27,3 +31,8 @@ func loading_walk(face_direction: Vector2) -> void:
 func cancel_loading() -> void:
 	animation_tree["parameters/conditions/loading_cancel"] = true
 	
+func increase_hit_damage() -> void:
+	hit_box.damage = base_damage * 2
+
+func restore_hit_damage() -> void:
+	hit_box.damage = base_damage

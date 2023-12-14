@@ -2410,7 +2410,6 @@ script = ExtResource("1_x72g7")
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_f4dtd")
 init_state = NodePath("PlayerIdleState")
-debug = true
 
 [node name="PlayerIdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_7ijvq")
