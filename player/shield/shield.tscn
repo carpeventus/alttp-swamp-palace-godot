@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://deik1lotbq6b4"]
+[gd_scene load_steps=58 format=3 uid="uid://deik1lotbq6b4"]
 
 [ext_resource type="Script" path="res://player/shield/shield.gd" id="1_uvcwo"]
 [ext_resource type="Texture2D" uid="uid://4kw0ux46gah4" path="res://assets/shield/shield_idle.png" id="2_att6a"]
@@ -994,22 +994,6 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_0lwav"]
-resource_name = "shiled_spin_attack"
-length = 0.66
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xdq8"]
 _data = {
 "RESET": SubResource("Animation_a4f4q"),
@@ -1027,8 +1011,7 @@ _data = {
 "shield_walk_right": SubResource("Animation_tttww"),
 "shield_walk_up": SubResource("Animation_8ebwd"),
 "shild_idle_down": SubResource("Animation_ncmun"),
-"shild_idle_left": SubResource("Animation_5gn1e"),
-"shiled_spin_attack": SubResource("Animation_0lwav")
+"shild_idle_left": SubResource("Animation_5gn1e")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qqb5t"]
@@ -1148,9 +1131,6 @@ min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0bgq"]
-animation = &"shiled_spin_attack"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oeqi6"]
 advance_mode = 2
 
@@ -1188,16 +1168,6 @@ advance_condition = &"idle"
 advance_mode = 2
 advance_condition = &"loading_cancel"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wnad8"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_igfj7"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"moving"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0tktu"]
 states/ShieldAttack/node = SubResource("AnimationNodeBlendSpace2D_hbksg")
 states/ShieldAttack/position = Vector2(335.5, -137.5)
@@ -1209,10 +1179,8 @@ states/ShieldLoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_2iwf6")
 states/ShieldLoadingWalk/position = Vector2(917, -49)
 states/ShieldWalk/node = SubResource("AnimationNodeBlendSpace2D_ob60i")
 states/ShieldWalk/position = Vector2(643.5, 100.625)
-states/ShiledSpinAttack/node = SubResource("AnimationNodeAnimation_m0bgq")
-states/ShiledSpinAttack/position = Vector2(531.292, 253.199)
-transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldAttack", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_fqgpd"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_g1v6i"), "ShiledSpinAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_wnad8"), "ShiledSpinAttack", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_igfj7")]
-graph_offset = Vector2(-151.208, -194.801)
+transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldAttack", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_fqgpd"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_g1v6i")]
+graph_offset = Vector2(-151.208, -180.414)
 
 [node name="Shield" type="Node2D"]
 script = ExtResource("1_uvcwo")
