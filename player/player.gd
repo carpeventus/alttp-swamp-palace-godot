@@ -71,7 +71,7 @@ func check_take_damage() -> void:
 	
 func start_immune() -> void:
 	damage_immune_timer.start()
-	if hurt_blink_tween and hurt_blink_tween.is_running():
+	if hurt_blink_tween:
 		hurt_blink_tween.kill()
 	hurt_blink_tween = create_tween()
 	hurt_blink_tween.set_loops()
