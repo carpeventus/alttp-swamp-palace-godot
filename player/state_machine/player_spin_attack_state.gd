@@ -19,3 +19,4 @@ func spin_attack() -> void:
 	player.animation_tree["parameters/SpinAttack/blend_position"] = player.face_direction
 	player.anim_playback.travel("SpinAttack")
 	player.sword.spin_attack(player.face_direction)
+	player.shield.spin_attack(player.face_direction)

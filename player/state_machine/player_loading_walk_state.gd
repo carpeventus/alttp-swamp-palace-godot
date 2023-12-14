@@ -18,7 +18,6 @@ func logic_update(delta: float) -> void:
 	if Input.is_action_just_released("sword_attack") and player.is_spin_attck_ready:
 		state_machine.change_state("PlayerSpinAttackState")
 	elif not player.is_request_loading:
-		print(state_machine.current_state.name + " turn walk")
 		cancel_loading()
 		state_machine.change_state("PlayerWalkState")
 	elif is_zero_approx(player.input_direction.length()):

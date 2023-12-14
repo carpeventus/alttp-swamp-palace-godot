@@ -46,3 +46,6 @@ func loading_walk(face_direction: Vector2) -> void:
 func cancel_loading() -> void:
 	animation_tree["parameters/conditions/loading_cancel"] = true
 	
+
+func spin_attack(face_direction: Vector2) -> void:
+	anim_playback.travel("ShiledSpinAttack")
