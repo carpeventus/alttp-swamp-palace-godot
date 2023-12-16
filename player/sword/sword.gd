@@ -4,7 +4,7 @@ class_name Sword extends Node2D
 @onready var anim_playback: AnimationNodeStateMachinePlayback= animation_tree["parameters/playback"]
 @onready var hit_box: HitBox = $HitBox
 
-var base_damage: float
+var base_damage: int
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -33,6 +33,8 @@ func cancel_loading() -> void:
 	
 func increase_hit_damage() -> void:
 	hit_box.damage = base_damage * 2
+	hit_box.monitorable = true
+
 
 func restore_hit_damage() -> void:
 	hit_box.damage = base_damage

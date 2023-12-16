@@ -2499,12 +2499,6 @@ visible = false
 
 [node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
 
-[node name="HitBox" parent="MainWeapon/Sword" index="3"]
-monitorable = false
-
-[node name="CollisionShape2D" parent="MainWeapon/Sword/HitBox" index="1"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-
 [node name="DamageImmuneTimer" type="Timer" parent="."]
 wait_time = 1.2
 one_shot = true

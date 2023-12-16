@@ -89,7 +89,7 @@ func _on_dead() -> void:
 	is_dead = true
 	
 #endregion
-	
+
 #region init
 func init_animtion_params() -> void:
 	init_body_animation_params()
@@ -104,7 +104,7 @@ func init_body_animation_params() -> void:
 	animation_tree["parameters/Walk/blend_position"] =  Vector2.ZERO
 #endregion
 
-
+#region input
 func handle_input(delta: float) -> void:
 	if forbidden_input:
 		return
@@ -122,5 +122,6 @@ func handle_input(delta: float) -> void:
 		sword_loading_hold_time = 0.0
 		spin_attack_charge_time = 0.0
 		is_request_loading = false
-		
+	#endregion
+	
 
