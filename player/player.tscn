@@ -22,11 +22,13 @@
 [ext_resource type="Texture2D" uid="uid://ctwqttr455wfi" path="res://assets/link/link_idle.png" id="14_etot4"]
 [ext_resource type="Texture2D" uid="uid://buttl34qafj8y" path="res://assets/link/link_spin_attack.png" id="18_e2vp4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_exhh7"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jcrg"]
 radius = 6.0
+height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ssik4"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pq0w0"]
 radius = 6.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_7l4dy"]
 length = 0.001
@@ -2448,7 +2450,7 @@ max_health = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, -12)
-shape = SubResource("CircleShape2D_exhh7")
+shape = SubResource("CapsuleShape2D_0jcrg")
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -2456,7 +2458,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 position = Vector2(2.08165e-12, -12)
-shape = SubResource("CircleShape2D_ssik4")
+shape = SubResource("CapsuleShape2D_pq0w0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2496,6 +2498,12 @@ material = SubResource("ShaderMaterial_g074g")
 visible = false
 
 [node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
+
+[node name="HitBox" parent="MainWeapon/Sword" index="3"]
+monitorable = false
+
+[node name="CollisionShape2D" parent="MainWeapon/Sword/HitBox" index="1"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="DamageImmuneTimer" type="Timer" parent="."]
 wait_time = 1.2
