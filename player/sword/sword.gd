@@ -14,17 +14,12 @@ func _ready() -> void:
 	hit_box.body_exited.connect(_on_body_exit)
 
 func _on_body_entered(body: Node2D) -> void:
-	print("enter" + body.name)
-	print(body is Enemy)
 	if body is Enemy:
 		is_hit_enmey = true
 	
 func _on_body_exit(body: Node2D) -> void:
-	print("exit" + body.name)
-	print(body is Enemy)
 	if body is Enemy:
 		is_hit_enmey = false
-		print("cancel hit")
 
 func attack(direction: Vector2) -> void:
 	animation_tree["parameters/SwordAttack/blend_position"] = direction

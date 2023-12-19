@@ -27,6 +27,7 @@ var sword_loading_hold_time: float = 0.0
 var spin_attack_charge_time: float = 0.0
 var is_request_loading: bool = false
 var is_spin_attck_ready: bool = false
+var can_loading: bool = false
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -105,12 +106,21 @@ func init_body_animation_params() -> void:
 	animation_tree["parameters/Walk/blend_position"] =  Vector2.ZERO
 #endregion
 
+
+
 #region input
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("sword_attack"):
+		can_loading = true
+	elif event.is_action_released("sword_attack"):
+		can_loading = false
+		
 func handle_input(delta: float) -> void:
 	if forbidden_input:
 		return
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	if Input.is_action_pressed("sword_attack"):
+	# 按下一次攻击后，才可以开始蓄力
+	if can_loading and Input.is_action_pressed("sword_attack"):
 		sword_loading_hold_time += delta
 		if sword_loading_hold_time > sword_loading_need_hold_time:
 			is_request_loading = true
@@ -123,6 +133,7 @@ func handle_input(delta: float) -> void:
 		sword_loading_hold_time = 0.0
 		spin_attack_charge_time = 0.0
 		is_request_loading = false
+		can_loading = false
 	#endregion
 	
 

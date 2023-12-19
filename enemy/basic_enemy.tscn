@@ -17,7 +17,6 @@ script = ExtResource("1_8o5gu")
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_4awig")
 
