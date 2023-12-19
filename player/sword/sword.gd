@@ -4,19 +4,27 @@ class_name Sword extends Node2D
 @onready var anim_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var hit_box: HitBox = $HitBox
 
-var is_hit_body: bool = false
+var is_hit_enmey: bool = false
 var base_damage: int
 
 func _ready() -> void:
 	animation_tree.active = true
 	base_damage = hit_box.damage
 	hit_box.body_entered.connect(_on_body_entered)
+	hit_box.body_exited.connect(_on_body_exit)
 
 func _on_body_entered(body: Node2D) -> void:
-	is_hit_body = true
+	print("enter" + body.name)
+	print(body is Enemy)
+	if body is Enemy:
+		is_hit_enmey = true
 	
 func _on_body_exit(body: Node2D) -> void:
-	is_hit_body = false
+	print("exit" + body.name)
+	print(body is Enemy)
+	if body is Enemy:
+		is_hit_enmey = false
+		print("cancel hit")
 
 func attack(direction: Vector2) -> void:
 	animation_tree["parameters/SwordAttack/blend_position"] = direction
@@ -35,6 +43,11 @@ func loading_walk(face_direction: Vector2) -> void:
 	animation_tree["parameters/SwordLoadingWalk/blend_position"] = face_direction
 	animation_tree["parameters/conditions/loading_cancel"] = false
 	anim_playback.travel("SwordLoadingWalk")
+
+
+func taping(face_direction: Vector2) -> void:
+	animation_tree["parameters/SwordTapingEnemy/blend_position"] = face_direction
+	anim_playback.travel("SwordTapingEnemy")
 
 func cancel_loading() -> void:
 	animation_tree["parameters/conditions/loading_cancel"] = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://deik1lotbq6b4"]
+[gd_scene load_steps=57 format=3 uid="uid://deik1lotbq6b4"]
 
 [ext_resource type="Script" path="res://player/shield/shield.gd" id="1_uvcwo"]
 [ext_resource type="Texture2D" uid="uid://4kw0ux46gah4" path="res://assets/shield/shield_idle.png" id="2_att6a"]
@@ -1147,11 +1147,6 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fqgpd"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"moving"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dk3xi"]
 advance_mode = 2
 advance_condition = &"loading_cancel"
@@ -1164,23 +1159,23 @@ advance_condition = &"moving"
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g1v6i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kv2"]
 advance_mode = 2
 advance_condition = &"loading_cancel"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0tktu"]
 states/ShieldAttack/node = SubResource("AnimationNodeBlendSpace2D_hbksg")
-states/ShieldAttack/position = Vector2(335.5, -137.5)
+states/ShieldAttack/position = Vector2(306, -48.5)
 states/ShieldIdle/node = SubResource("AnimationNodeBlendSpace2D_h3dqm")
 states/ShieldIdle/position = Vector2(401, 101.25)
 states/ShieldLoadingIdle/node = SubResource("AnimationNodeBlendSpace2D_i1abt")
-states/ShieldLoadingIdle/position = Vector2(663.5, -143)
+states/ShieldLoadingIdle/position = Vector2(547.5, -94)
 states/ShieldLoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_2iwf6")
-states/ShieldLoadingWalk/position = Vector2(917, -49)
+states/ShieldLoadingWalk/position = Vector2(843, -99.5)
 states/ShieldWalk/node = SubResource("AnimationNodeBlendSpace2D_ob60i")
 states/ShieldWalk/position = Vector2(643.5, 100.625)
-transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldAttack", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_fqgpd"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_g1v6i")]
-graph_offset = Vector2(-151.208, -180.414)
+transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2")]
+graph_offset = Vector2(30.792, -154.414)
 
 [node name="Shield" type="Node2D"]
 script = ExtResource("1_uvcwo")

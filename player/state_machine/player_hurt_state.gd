@@ -11,11 +11,8 @@ func on_enter() -> void:
 	if player.is_dead:
 		state_machine.change_state("PlayerDeadState")
 		return
-		
-	if is_zero_approx(player.input_direction.length()):
-		state_machine.change_state("PlayerIdleState")
-	else:
-		state_machine.change_state("PlayerWalkState")
+	
+	state_machine.change_state("PlayerIdleState")
 	
 	
 func be_hurt() -> void:

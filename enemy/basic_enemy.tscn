@@ -17,6 +17,7 @@ script = ExtResource("1_8o5gu")
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_4awig")
 
@@ -25,7 +26,7 @@ position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_6clfw")
 
 [node name="HealthCompoent" parent="." instance=ExtResource("3_uumco")]
-max_health = 10
+max_health = 1000
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_uq4do")]
 health_component = NodePath("../HealthCompoent")

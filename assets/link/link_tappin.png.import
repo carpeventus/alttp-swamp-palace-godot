@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq518bvskq51"
-path="res://.godot/imported/sword_tapping.sword.png-fcc1edf9869f060db87b0a305034721c.ctex"
+uid="uid://bs2ividwjj301"
+path="res://.godot/imported/link_tappin.png-d36a1e4895e34e0c72c20cd7823237c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sword/sword_tapping.sword.png"
-dest_files=["res://.godot/imported/sword_tapping.sword.png-fcc1edf9869f060db87b0a305034721c.ctex"]
+source_file="res://assets/link/link_tappin.png"
+dest_files=["res://.godot/imported/link_tappin.png-d36a1e4895e34e0c72c20cd7823237c2.ctex"]
 
 [params]
 
