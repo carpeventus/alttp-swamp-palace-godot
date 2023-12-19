@@ -2369,6 +2369,7 @@ region_enabled = true
 region_rect = Rect2(0, 240, 80, 80)
 
 [node name="HitBox" parent="." instance=ExtResource("3_ngmxd")]
+collision_mask = 4
 monitorable = false
 damage = 1
 

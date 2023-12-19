@@ -9,6 +9,8 @@ func logic_update(delta: float) -> void:
 	elif not player.is_request_loading:
 		cancel_loading()
 		state_machine.change_state("PlayerIdleState")
+	elif player.sword.is_hit_body:
+		state_machine.change_state("PlayerTapingState")
 	elif not is_zero_approx(player.input_direction.length()):
 		state_machine.change_state("PlayerLoadingWalkState")
 

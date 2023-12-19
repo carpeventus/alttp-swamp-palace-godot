@@ -5,9 +5,7 @@ extends PlayerState
 func on_enter() -> void:
 	loading_walk()
 
-func on_exit() -> void:
-	cancel_loading()
-	
+
 func physics_update(delta: float) -> void:
 	player.velocity = player.input_direction * loading_move_speed
 
@@ -20,6 +18,8 @@ func logic_update(delta: float) -> void:
 	elif not player.is_request_loading:
 		cancel_loading()
 		state_machine.change_state("PlayerWalkState")
+	elif player.sword.is_hit_body:
+		state_machine.change_state("PlayerTapingState")
 	elif is_zero_approx(player.input_direction.length()):
 		state_machine.change_state("PlayerLoadingIdleState")
 

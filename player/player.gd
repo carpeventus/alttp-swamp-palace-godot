@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	handle_input(delta)
 	state_machine.current_state.logic_update(delta)
+#endregion
 
 #region hurtdead
 func _on_hurt_body_entered(body: Node2D) -> void:
