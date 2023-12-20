@@ -46,3 +46,6 @@ func loading_walk(face_direction: Vector2) -> void:
 func cancel_loading() -> void:
 	animation_tree["parameters/conditions/loading_cancel"] = true
 	
+func taping_enemy(face_direction: Vector2) -> void:
+	animation_tree["parameters/ShieldTapingEnemy/blend_position"] = face_direction
+	anim_playback.travel("ShieldTapingEnemy")

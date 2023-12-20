@@ -40,7 +40,7 @@ func loading_walk(face_direction: Vector2) -> void:
 	anim_playback.travel("SwordLoadingWalk")
 
 
-func taping(face_direction: Vector2) -> void:
+func taping_enemy(face_direction: Vector2) -> void:
 	animation_tree["parameters/SwordTapingEnemy/blend_position"] = face_direction
 	anim_playback.travel("SwordTapingEnemy")
 
