@@ -34,6 +34,7 @@ func be_hurt() -> void:
 
 func try_cancel_loading() -> void:
 	player.is_spin_attck_ready = false
+	player.can_loading = false
 	player.is_request_loading = false
 	player.sword_loading_hold_time = 0.0
 	player.spin_attack_charge_time = 0.0

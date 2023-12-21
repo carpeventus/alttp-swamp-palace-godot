@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://f0am1bidysrd" path="res://component/hurt_box.tscn" id="4_uq4do"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6clfw"]
-size = Vector2(36, 47)
+size = Vector2(20, 28)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_800es"]
-radius = 18.0278
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2j07w"]
+size = Vector2(20, 27)
 
 [node name="BasicEnemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -17,11 +17,11 @@ script = ExtResource("1_8o5gu")
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_4awig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9.5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_6clfw")
 
 [node name="HealthCompoent" parent="." instance=ExtResource("3_uumco")]
@@ -31,5 +31,5 @@ max_health = 1000
 health_component = NodePath("../HealthCompoent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(2.08165e-12, -8)
-shape = SubResource("CircleShape2D_800es")
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_2j07w")

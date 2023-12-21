@@ -5,6 +5,7 @@ class_name Sword extends Node2D
 @onready var hit_box: HitBox = $HitBox
 
 var is_hit_enmey: bool = false
+var is_hit_wall: bool = false
 var base_damage: int
 
 func _ready() -> void:
@@ -16,10 +17,16 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		is_hit_enmey = true
+	elif body is StaticBody2D:
+		is_hit_wall = true
+		prints(is_hit_wall)
 	
 func _on_body_exit(body: Node2D) -> void:
 	if body is Enemy:
 		is_hit_enmey = false
+	elif body is StaticBody2D:
+		is_hit_wall = false
+		prints(is_hit_wall)
 
 func attack(direction: Vector2) -> void:
 	animation_tree["parameters/SwordAttack/blend_position"] = direction

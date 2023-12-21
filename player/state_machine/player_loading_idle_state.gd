@@ -38,6 +38,7 @@ func cancel_loading() -> void:
 	if not should_cancel_loading:
 		return
 	player.is_spin_attck_ready = false
+	player.can_loading = false
 	player.is_request_loading = false
 	player.sword_loading_hold_time = 0.0
 	player.spin_attack_charge_time = 0.0

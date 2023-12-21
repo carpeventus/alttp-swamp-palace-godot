@@ -10,7 +10,7 @@ func on_enter() -> void:
 
 func taping_enemy() -> void:
 	player.velocity = Vector2.ZERO
-	player.animation_tree["parameters/TapingEnemy/blend_position"] = player.face_direction
-	player.anim_playback.travel("TapingEnemy")
+	player.animation_tree["parameters/TapingWall/blend_position"] = player.face_direction
+	player.anim_playback.travel("TapingWall")
 	player.sword.taping_enemy(player.face_direction)
 	player.shield.taping_enemy(player.face_direction)

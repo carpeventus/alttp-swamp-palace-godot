@@ -24,6 +24,9 @@ func logic_update(delta: float) -> void:
 		state_machine.change_state("PlayerIdleState")
 	elif player.sword.is_hit_enmey:
 		state_machine.change_state("PlayerTapingEnemyState")
+	elif player.sword.is_hit_wall:
+		print("hit wall")
+		state_machine.change_state("PlayerTapingWallState")
 	elif is_zero_approx(player.input_direction.length()):
 		should_cancel_loading = false
 		state_machine.change_state("PlayerLoadingIdleState")
@@ -41,6 +44,7 @@ func cancel_loading() -> void:
 	if not should_cancel_loading:
 		return
 	player.is_spin_attck_ready = false
+	player.can_loading = false
 	player.is_request_loading = false
 	player.sword_loading_hold_time = 0.0
 	player.spin_attack_charge_time = 0.0

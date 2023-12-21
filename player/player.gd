@@ -130,10 +130,12 @@ func handle_input(delta: float) -> void:
 		if spin_attack_charge_time > spin_attack_need_charge_time:
 			is_spin_attck_ready = true
 	else:
+		# 这里不能将is_spin_attck_ready置为false，
 		sword_loading_hold_time = 0.0
 		spin_attack_charge_time = 0.0
 		is_request_loading = false
 		can_loading = false
+		# 这里
 	#endregion
 	
 
