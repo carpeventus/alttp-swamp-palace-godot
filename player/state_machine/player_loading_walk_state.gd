@@ -24,9 +24,6 @@ func logic_update(delta: float) -> void:
 		state_machine.change_state("PlayerIdleState")
 	elif player.sword.is_hit_enmey:
 		state_machine.change_state("PlayerTapingEnemyState")
-	elif player.sword.is_hit_wall:
-		print("hit wall")
-		state_machine.change_state("PlayerTapingWallState")
 	elif is_zero_approx(player.input_direction.length()):
 		should_cancel_loading = false
 		state_machine.change_state("PlayerLoadingIdleState")

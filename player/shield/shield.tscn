@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://deik1lotbq6b4"]
+[gd_scene load_steps=66 format=3 uid="uid://deik1lotbq6b4"]
 
 [ext_resource type="Script" path="res://player/shield/shield.gd" id="1_uvcwo"]
 [ext_resource type="Texture2D" uid="uid://4kw0ux46gah4" path="res://assets/shield/shield_idle.png" id="2_att6a"]
@@ -1125,138 +1125,6 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_n3kiy"]
-resource_name = "shield_taping_down_wall"
-length = 0.35
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_1jqa4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldSprite:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 32, 224, 32)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ShieldSprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ShieldSprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ShieldSprite:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_dnimx"]
-resource_name = "shield_taping_up_wall"
-length = 0.35
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_1jqa4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldSprite:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 224, 32)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ShieldSprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ShieldSprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ShieldSprite:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xdq8"]
 _data = {
 "RESET": SubResource("Animation_a4f4q"),
@@ -1270,9 +1138,7 @@ _data = {
 "shield_loading_walk_down": SubResource("Animation_03dkl"),
 "shield_loading_walk_up": SubResource("Animation_1qire"),
 "shield_taping_down": SubResource("Animation_po5nq"),
-"shield_taping_down_wall": SubResource("Animation_n3kiy"),
 "shield_taping_up": SubResource("Animation_b6ehd"),
-"shield_taping_up_wall": SubResource("Animation_dnimx"),
 "shield_walk_down": SubResource("Animation_b72eq"),
 "shield_walk_left": SubResource("Animation_xci66"),
 "shield_walk_right": SubResource("Animation_tttww"),
@@ -1396,29 +1262,6 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_b85rv")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1trtx"]
-animation = &"shield_hide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_67au6"]
-animation = &"shield_hide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xlhm6"]
-animation = &"shield_taping_up_wall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnl07"]
-animation = &"shield_taping_down_wall"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_iwjhq"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_1trtx")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_67au6")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_xlhm6")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_cnl07")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_be7sq"]
 animation = &"shield_walk_up"
 
@@ -1480,10 +1323,6 @@ advance_condition = &"loading_cancel"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2dxq4"]
-advance_mode = 2
-advance_condition = &"far_away_wall"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0tktu"]
 states/ShieldAttack/node = SubResource("AnimationNodeBlendSpace2D_hbksg")
 states/ShieldAttack/position = Vector2(306, -48.5)
@@ -1495,12 +1334,10 @@ states/ShieldLoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_2iwf6")
 states/ShieldLoadingWalk/position = Vector2(843, -99.5)
 states/ShieldTapingEnemy/node = SubResource("AnimationNodeBlendSpace2D_37lax")
 states/ShieldTapingEnemy/position = Vector2(402.646, 228.586)
-states/ShieldTapingWall/node = SubResource("AnimationNodeBlendSpace2D_iwjhq")
-states/ShieldTapingWall/position = Vector2(679.292, 229.336)
 states/ShieldWalk/node = SubResource("AnimationNodeBlendSpace2D_ob60i")
 states/ShieldWalk/position = Vector2(643.5, 100.625)
-transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2"), "ShieldTapingEnemy", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_4rqoc"), "ShieldTapingWall", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_2dxq4")]
-graph_offset = Vector2(188.792, 59.586)
+transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2"), "ShieldTapingEnemy", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_4rqoc")]
+graph_offset = Vector2(34.792, -138.414)
 
 [node name="Shield" type="Node2D"]
 script = ExtResource("1_uvcwo")
@@ -1512,7 +1349,6 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_0tktu")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/far_away_wall = false
 parameters/conditions/idle = false
 parameters/conditions/loading_cancel = false
 parameters/conditions/moving = false
@@ -1521,7 +1357,6 @@ parameters/ShieldIdle/blend_position = Vector2(-0.000981331, 1)
 parameters/ShieldLoadingIdle/blend_position = Vector2(0, 0)
 parameters/ShieldLoadingWalk/blend_position = Vector2(0, 0)
 parameters/ShieldTapingEnemy/blend_position = Vector2(0, 0)
-parameters/ShieldTapingWall/blend_position = Vector2(0, 0)
 parameters/ShieldWalk/blend_position = Vector2(0.999019, 0.00509262)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
