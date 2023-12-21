@@ -3,15 +3,21 @@ class_name Sword extends Node2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var hit_box: HitBox = $HitBox
+@onready var sprite: Sprite2D = $Sprite2D
+
+
+signal spin_attack_ready_signal
 
 var is_hit_enmey: bool = false
 var base_damage: int
+var flash_tween: Tween
 
 func _ready() -> void:
 	animation_tree.active = true
 	base_damage = hit_box.damage
 	hit_box.body_entered.connect(_on_body_entered)
 	hit_box.body_exited.connect(_on_body_exit)
+	spin_attack_ready_signal.connect(_on_spin_attack_ready)
 
 func _on_body_entered(body: Node2D) -> void:
 	is_hit_enmey = true
@@ -45,11 +51,27 @@ func taping_enemy(face_direction: Vector2) -> void:
 
 func cancel_loading() -> void:
 	animation_tree["parameters/conditions/loading_cancel"] = true
+	spin_attack_flash_shader_restore()
 	
 func increase_hit_damage() -> void:
 	hit_box.damage = base_damage * 2
 	hit_box.monitorable = true
 
-
 func restore_hit_damage() -> void:
 	hit_box.damage = base_damage
+
+
+func _on_spin_attack_ready() -> void:
+	sprite.material.set_shader_parameter("mix_ratio", 1.0)
+	sprite.material.set_shader_parameter("current_frame", 0)
+	if flash_tween:
+		flash_tween.kill()
+	flash_tween = create_tween()
+	flash_tween.set_loops()
+	flash_tween.tween_property(sprite.material, "shader_parameter/current_frame", 3, 0.4).from(0)
+
+func spin_attack_flash_shader_restore() -> void:
+	sprite.material.set_shader_parameter("mix_ratio", 0.0)
+	sprite.material.set_shader_parameter("current_frame", 0)
+	if flash_tween:
+		flash_tween.kill()

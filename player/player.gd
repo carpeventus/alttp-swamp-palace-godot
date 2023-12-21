@@ -127,8 +127,12 @@ func handle_input(delta: float) -> void:
 		# loading时才能蓄力
 		if is_request_loading:
 			spin_attack_charge_time += delta
-		if spin_attack_charge_time > spin_attack_need_charge_time:
+		
+		if spin_attack_charge_time > spin_attack_need_charge_time and not is_spin_attck_ready:
 			is_spin_attck_ready = true
+			# only once
+			print("Ready")
+			sword.spin_attack_ready_signal.emit()
 	else:
 		# 这里不能将is_spin_attck_ready置为false，
 		sword_loading_hold_time = 0.0

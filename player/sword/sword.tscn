@@ -1,10 +1,11 @@
-[gd_scene load_steps=66 format=3 uid="uid://bkuwq2xt54gha"]
+[gd_scene load_steps=68 format=3 uid="uid://bkuwq2xt54gha"]
 
 [ext_resource type="Texture2D" uid="uid://dx4sogft4vt6q" path="res://assets/sword/sword.png" id="1_d1trc"]
 [ext_resource type="Script" path="res://player/sword/sword.gd" id="1_k25ba"]
 [ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="3_ngmxd"]
 [ext_resource type="Texture2D" uid="uid://cp3tgmfvoph6x" path="res://assets/sword/sword_loading.png" id="3_s4jl5"]
 [ext_resource type="Texture2D" uid="uid://cu117fw4khqbf" path="res://assets/sword/sword_spin_attack.png" id="4_ke7tf"]
+[ext_resource type="Shader" path="res://player/sword/sword_spin_attack_ready.gdshader" id="6_vh77k"]
 [ext_resource type="Texture2D" uid="uid://8hon0rm6s34r" path="res://assets/sword/sword_tapping.right.png" id="8_q0t78"]
 
 [sub_resource type="Animation" id="Animation_cklrd"]
@@ -2868,6 +2869,16 @@ states/default/position = Vector2(382, 202.5)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_xi7g5"), "SwordAttack", "default", SubResource("AnimationNodeStateMachineTransition_vvloe"), "SwordLoadingIdle", "default", SubResource("AnimationNodeStateMachineTransition_nx55n"), "SwordLoadingWalk", "default", SubResource("AnimationNodeStateMachineTransition_ndjdk"), "SwordLoadingIdle", "SwordLoadingWalk", SubResource("AnimationNodeStateMachineTransition_knlon"), "SwordLoadingWalk", "SwordLoadingIdle", SubResource("AnimationNodeStateMachineTransition_mlir2"), "SwordSpinAttack", "default", SubResource("AnimationNodeStateMachineTransition_yk8hw"), "SwordTapingEnemy", "default", SubResource("AnimationNodeStateMachineTransition_twqd2")]
 graph_offset = Vector2(-226, 239.742)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wd6m"]
+shader = ExtResource("6_vh77k")
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 0.0
+shader_parameter/color1 = Color(0.972549, 0.92549, 0.729412, 1)
+shader_parameter/color2 = Color(0.952941, 0.776471, 0.0392157, 1)
+shader_parameter/color3 = Color(0.941176, 0.541176, 0.133333, 1)
+shader_parameter/color4 = Color(0.85098, 0.321569, 0.113725, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ouflq"]
 radius = 2.0
 height = 4.0
@@ -2898,6 +2909,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_7wd6m")
 texture = ExtResource("1_d1trc")
 offset = Vector2(2.08165e-12, -16)
 region_enabled = true
