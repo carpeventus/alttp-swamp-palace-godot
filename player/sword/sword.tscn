@@ -2923,3 +2923,18 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("CapsuleShape2D_ouflq")
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(24, -8)
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-23, -8)
+
+[node name="MarkerUp" type="Marker2D" parent="."]
+position = Vector2(-4, -36)
+
+[node name="MarkerDown" type="Marker2D" parent="."]
+position = Vector2(5, 10)
+
+[node name="SwordEnegySpawnIntervalTimer" type="Timer" parent="."]
+one_shot = true

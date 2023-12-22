@@ -1,7 +1,13 @@
 class_name Player extends CharacterBody2D
 
+
+#region 测试
+@export var enable_sword_energy: bool = false
+#endregion
+
 @export var sword_loading_need_hold_time: float = 0.24
 @export var spin_attack_need_charge_time: float = 1.0
+
 #region Onready
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -131,7 +137,6 @@ func handle_input(delta: float) -> void:
 		if spin_attack_charge_time > spin_attack_need_charge_time and not is_spin_attck_ready:
 			is_spin_attck_ready = true
 			# only once
-			print("Ready")
 			sword.spin_attack_ready_signal.emit()
 	else:
 		# 这里不能将is_spin_attck_ready置为false，

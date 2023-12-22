@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func logic_update(delta: float) -> void:
 	# loading状态下不能改变朝向
-	if state_machine.current_state.name == "PlayerLoadingIdleState" or  state_machine.current_state.name == "PlayerLoadingWalkState":
+	if state_machine.current_state.name == "PlayerLoadingIdleState" or state_machine.current_state.name == "PlayerLoadingWalkState":
 		update_moving_conditions()
 	else:
 		update_current_face_direction()

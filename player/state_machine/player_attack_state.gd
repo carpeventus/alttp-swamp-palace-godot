@@ -15,5 +15,7 @@ func sword_attack() -> void:
 	player.anim_playback.travel("Attack")
 	player.sword.attack(player.face_direction)
 	player.shield.attack(player.face_direction)
+	if player.enable_sword_energy:
+		player.sword.generate_sword_enegy(player.face_direction)
 
 

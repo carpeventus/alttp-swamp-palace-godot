@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg6fvtmhkmmtg"]
+
+[ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_i1eff"]
+[ext_resource type="Script" path="res://player/sword/sword_energy.gd" id="1_mdpba"]
+[ext_resource type="Texture2D" uid="uid://u1h0asj0uk6h" path="res://assets/sword/sword_energy.png" id="2_5q3w7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0h7wd"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6h8o"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_0qwv3"]
+resource_name = "rotate"
+length = 0.16
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_3ohs6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxfmf"]
+_data = {
+"RESET": SubResource("Animation_3ohs6"),
+"rotate": SubResource("Animation_0qwv3")
+}
+
+[node name="SwordEnergy" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_mdpba")
+
+[node name="HitBox" parent="." instance=ExtResource("1_i1eff")]
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(2.08165e-12, 4)
+shape = SubResource("CircleShape2D_0h7wd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 4)
+shape = SubResource("CircleShape2D_l6h8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5q3w7")
+hframes = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jxfmf")
+}
+autoplay = "rotate"

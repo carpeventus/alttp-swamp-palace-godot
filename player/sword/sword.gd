@@ -5,6 +5,15 @@ class_name Sword extends Node2D
 @onready var hit_box: HitBox = $HitBox
 @onready var sprite: Sprite2D = $Sprite2D
 
+@onready var marker_right: Marker2D = $MarkerRight
+@onready var marker_left: Marker2D = $MarkerLeft
+@onready var marker_up: Marker2D = $MarkerUp
+@onready var marker_down: Marker2D = $MarkerDown
+@onready var sword_enegy_spawn_interval_timer: Timer = $SwordEnegySpawnIntervalTimer
+
+
+var sword_energy_scene: PackedScene = preload("res://player/sword/sword_energy.tscn")
+
 
 signal spin_attack_ready_signal
 
@@ -75,3 +84,22 @@ func spin_attack_flash_shader_restore() -> void:
 	sprite.material.set_shader_parameter("current_frame", 0)
 	if flash_tween:
 		flash_tween.kill()
+
+func generate_sword_enegy(face_direction: Vector2) -> void:
+	if not sword_enegy_spawn_interval_timer.is_stopped():
+		return
+	sword_enegy_spawn_interval_timer.start()
+	var spawn_position: Vector2 = global_position
+	if face_direction == Vector2.UP:
+		spawn_position = marker_up.global_position
+	elif face_direction == Vector2.DOWN:
+		spawn_position = marker_down.global_position
+	elif face_direction == Vector2.RIGHT:
+		spawn_position = marker_right.global_position
+	elif face_direction == Vector2.LEFT:
+		spawn_position = marker_left.global_position
+		
+	var sword_energy: SwordEnergy = sword_energy_scene.instantiate() as SwordEnergy
+	get_tree().get_first_node_in_group("EntitiesLayer").add_child(sword_energy)
+	sword_energy.global_position = spawn_position
+	sword_energy.start_sowrd_energy_attack(face_direction)

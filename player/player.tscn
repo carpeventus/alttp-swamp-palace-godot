@@ -2718,10 +2718,11 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 1.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_x72g7")
+enable_sword_energy = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_f4dtd")
