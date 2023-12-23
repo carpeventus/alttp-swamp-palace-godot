@@ -1,7 +1,7 @@
 class_name SwordEnergy extends CharacterBody2D
 
 @export var fly_speed: float = 200.0
-@export var fly_time: float = 3.0
+@export var fly_time: float = 2.0
 @onready var hit_box: HitBox = $HitBox
 
 var fly_direction: Vector2 = Vector2.ZERO

@@ -27,6 +27,10 @@ func logic_update(delta: float) -> void:
 	elif is_zero_approx(player.input_direction.length()):
 		should_cancel_loading = false
 		state_machine.change_state("PlayerLoadingIdleState")
+	
+	if player.is_spin_attck_ready and not player.sword.is_sword_star_particles_emtting():
+		player.sword.generate_sword_star_particles(player.face_direction)
+			
 
 
 func loading_walk() -> void:

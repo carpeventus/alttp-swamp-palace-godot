@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bkuwq2xt54gha"]
+[gd_scene load_steps=81 format=3 uid="uid://bkuwq2xt54gha"]
 
 [ext_resource type="Texture2D" uid="uid://dx4sogft4vt6q" path="res://assets/sword/sword.png" id="1_d1trc"]
 [ext_resource type="Script" path="res://player/sword/sword.gd" id="1_k25ba"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cp3tgmfvoph6x" path="res://assets/sword/sword_loading.png" id="3_s4jl5"]
 [ext_resource type="Texture2D" uid="uid://cu117fw4khqbf" path="res://assets/sword/sword_spin_attack.png" id="4_ke7tf"]
 [ext_resource type="Shader" path="res://player/sword/sword_spin_attack_ready.gdshader" id="6_vh77k"]
+[ext_resource type="Texture2D" uid="uid://btd6bsxthsa8y" path="res://assets/sword/sword_star.png" id="8_cm3bm"]
 [ext_resource type="Texture2D" uid="uid://8hon0rm6s34r" path="res://assets/sword/sword_tapping.right.png" id="8_q0t78"]
 
 [sub_resource type="Animation" id="Animation_cklrd"]
@@ -2883,6 +2884,82 @@ shader_parameter/color4 = Color(0.85098, 0.321569, 0.113725, 1)
 radius = 2.0
 height = 4.0
 
+[sub_resource type="Curve" id="Curve_cwy71"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7dsui"]
+curve = SubResource("Curve_cwy71")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oglt2"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-4, 10, 2.08165e-12)
+spread = 15.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 15.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_7dsui")
+
+[sub_resource type="Curve" id="Curve_rpd03"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lw4qs"]
+curve = SubResource("Curve_rpd03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67yhk"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(4, -32, 2.08165e-12)
+spread = 15.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 15.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_lw4qs")
+
+[sub_resource type="Curve" id="Curve_ssero"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_agpqj"]
+curve = SubResource("Curve_ssero")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5w2e6"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-18, -10, 2.08165e-12)
+spread = 15.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 15.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_agpqj")
+
+[sub_resource type="Curve" id="Curve_yi0wk"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_857b5"]
+curve = SubResource("Curve_yi0wk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6j4op"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(20, -4, 2.08165e-12)
+spread = 15.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 15.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_857b5")
+
 [node name="Sword" type="Node2D"]
 script = ExtResource("1_k25ba")
 
@@ -2916,6 +2993,7 @@ region_enabled = true
 region_rect = Rect2(0, 240, 80, 80)
 
 [node name="HitBox" parent="." instance=ExtResource("3_ngmxd")]
+visible = false
 collision_mask = 4
 monitorable = false
 damage = 1
@@ -2924,17 +3002,49 @@ damage = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("CapsuleShape2D_ouflq")
 
-[node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(24, -8)
-
-[node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-23, -8)
-
-[node name="MarkerUp" type="Marker2D" parent="."]
-position = Vector2(-4, -36)
-
-[node name="MarkerDown" type="Marker2D" parent="."]
-position = Vector2(5, 10)
-
 [node name="SwordEnegySpawnIntervalTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SwordEnergySpawnPosition" type="Node2D" parent="."]
+
+[node name="MarkerRight" type="Marker2D" parent="SwordEnergySpawnPosition"]
+position = Vector2(24, -8)
+
+[node name="MarkerLeft" type="Marker2D" parent="SwordEnergySpawnPosition"]
+position = Vector2(-23, -8)
+
+[node name="MarkerUp" type="Marker2D" parent="SwordEnergySpawnPosition"]
+position = Vector2(-4, -36)
+
+[node name="MarkerDown" type="Marker2D" parent="SwordEnergySpawnPosition"]
+position = Vector2(5, 10)
+
+[node name="SwordStarParticles" type="Node2D" parent="."]
+
+[node name="SwordStarParticleDown" type="GPUParticles2D" parent="SwordStarParticles"]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_oglt2")
+texture = ExtResource("8_cm3bm")
+lifetime = 0.4
+
+[node name="SwordStarParticleUp" type="GPUParticles2D" parent="SwordStarParticles"]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_67yhk")
+texture = ExtResource("8_cm3bm")
+lifetime = 0.4
+
+[node name="SwordStarParticleLeft" type="GPUParticles2D" parent="SwordStarParticles"]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_5w2e6")
+texture = ExtResource("8_cm3bm")
+lifetime = 0.4
+
+[node name="SwordStarParticleRight" type="GPUParticles2D" parent="SwordStarParticles"]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_6j4op")
+texture = ExtResource("8_cm3bm")
+lifetime = 0.5
