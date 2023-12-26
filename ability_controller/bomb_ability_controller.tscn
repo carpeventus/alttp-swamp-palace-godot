@@ -6,3 +6,4 @@
 script = ExtResource("1_w73ds")
 
 [node name="SpawnIntervalTimer" type="Timer" parent="."]
+one_shot = true
