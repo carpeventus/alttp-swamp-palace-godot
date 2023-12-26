@@ -664,6 +664,7 @@ tracks/9/keys = {
 [sub_resource type="Animation" id="Animation_yf5wa"]
 resource_name = "sword_loading_idle_down"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -788,6 +789,7 @@ tracks/9/keys = {
 [sub_resource type="Animation" id="Animation_4vdyd"]
 resource_name = "sword_loading_idle_left"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -912,6 +914,7 @@ tracks/9/keys = {
 [sub_resource type="Animation" id="Animation_g88e8"]
 resource_name = "sword_loading_idle_right"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1036,6 +1039,7 @@ tracks/9/keys = {
 [sub_resource type="Animation" id="Animation_1tkwb"]
 resource_name = "sword_loading_idle_up"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

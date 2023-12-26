@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sr3228yxi0qb"
-path="res://.godot/imported/arrow.png-11a8ccf18501ba5dd34198e4b93345d3.ctex"
+uid="uid://dqkud7080iyqc"
+path="res://.godot/imported/boomerang.shield.png-3a66ee878cece2448ad96ff8c73d34e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-11a8ccf18501ba5dd34198e4b93345d3.ctex"]
+source_file="res://assets/shield/boomerang.shield.png"
+dest_files=["res://.godot/imported/boomerang.shield.png-3a66ee878cece2448ad96ff8c73d34e8.ctex"]
 
 [params]
 

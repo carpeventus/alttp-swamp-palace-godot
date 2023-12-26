@@ -15,10 +15,11 @@ position = Vector2(179, 140)
 [node name="Wall" parent="." instance=ExtResource("3_lsvg6")]
 position = Vector2(270, 50)
 
-[node name="Player" parent="." instance=ExtResource("1_4hkn1")]
+[node name="Entities" type="Node2D" parent="." groups=["EntitiesLayer"]]
+y_sort_enabled = true
+
+[node name="Player" parent="Entities" instance=ExtResource("1_4hkn1")]
 position = Vector2(232, 139)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
-[node name="Entities" type="Node2D" parent="." groups=["EntitiesLayer"]]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Player"]
+remote_path = NodePath("../../../Camera2D")

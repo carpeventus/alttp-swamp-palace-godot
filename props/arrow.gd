@@ -1,14 +1,16 @@
-class_name SwordEnergy extends Area2D
+class_name Arrow extends Area2D
 
 @export var fly_speed: float = 4.0
 @export var fly_time: float = 2.0
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var fly_direction: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
-func start_sowrd_energy_attack(face_direction: Vector2, spawn_position: Vector2) -> void:
+func start_arrow_fly(face_direction: Vector2, spawn_position: Vector2) -> void:
 	global_position = spawn_position
+	rotation = face_direction.angle()
 	fly_direction = face_direction
 	await get_tree().create_timer(fly_time).timeout
 	queue_free()
@@ -16,7 +18,8 @@ func start_sowrd_energy_attack(face_direction: Vector2, spawn_position: Vector2)
 func _physics_process(delta: float) -> void:
 	global_position += fly_speed * fly_direction
 
-
 func _on_body_entered(body: Node2D) -> void:
-	# hit enemy or wall should be free
+	fly_speed = 0.0
+	animation_player.play("hit")
+	await animation_player.animation_finished
 	queue_free()

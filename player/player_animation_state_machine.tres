@@ -1,4 +1,27 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=53 format=3 uid="uid://ydvtsdsfjlny"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=59 format=3 uid="uid://ydvtsdsfjlny"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ysndc"]
+animation = &"bow_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nk7w0"]
+animation = &"bow_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6bo51"]
+animation = &"bow_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j8hjj"]
+animation = &"bow_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8a21b"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ysndc")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_nk7w0")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_6bo51")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_j8hjj")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kv2cc"]
 animation = &"sword_attack_left"
@@ -232,7 +255,13 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"loading_cancel"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4m5nu"]
+switch_mode = 2
+advance_mode = 2
+
 [resource]
+states/ArrowShoot/node = SubResource("AnimationNodeBlendSpace2D_8a21b")
+states/ArrowShoot/position = Vector2(69.5, -27.723)
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_4gqin")
 states/Attack/position = Vector2(350.75, -74.5175)
 states/End/position = Vector2(1265, 260.312)
@@ -253,5 +282,5 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_lb63m")
 states/Walk/position = Vector2(598.5, 91.375)
 states/dying/node = SubResource("AnimationNodeAnimation_cfeeo")
 states/dying/position = Vector2(158.25, 228.739)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_it64h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_fyoqy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_n4ck4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_6iidk"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_wvaq4"), "LoadingIdle", "LoadingWalk", SubResource("AnimationNodeStateMachineTransition_b6ls8"), "LoadingWalk", "LoadingIdle", SubResource("AnimationNodeStateMachineTransition_sp52d"), "LoadingIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_jk11t"), "SpinAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_xtui4"), "TapingEnemy", "Idle", SubResource("AnimationNodeStateMachineTransition_mtwav"), "LoadingWalk", "Idle", SubResource("AnimationNodeStateMachineTransition_gpx0o")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_it64h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_fyoqy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_n4ck4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_6iidk"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_wvaq4"), "LoadingIdle", "LoadingWalk", SubResource("AnimationNodeStateMachineTransition_b6ls8"), "LoadingWalk", "LoadingIdle", SubResource("AnimationNodeStateMachineTransition_sp52d"), "LoadingIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_jk11t"), "SpinAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_xtui4"), "TapingEnemy", "Idle", SubResource("AnimationNodeStateMachineTransition_mtwav"), "LoadingWalk", "Idle", SubResource("AnimationNodeStateMachineTransition_gpx0o"), "ArrowShoot", "Idle", SubResource("AnimationNodeStateMachineTransition_4m5nu")]
 graph_offset = Vector2(-198, -169.723)
