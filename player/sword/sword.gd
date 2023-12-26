@@ -75,7 +75,7 @@ func increase_hit_damage() -> void:
 
 func restore_hit_damage() -> void:
 	hit_box.damage = base_damage
-
+	hit_box.monitorable = false
 
 func _on_spin_attack_ready() -> void:
 	sprite.material.set_shader_parameter("mix_ratio", 1.0)
