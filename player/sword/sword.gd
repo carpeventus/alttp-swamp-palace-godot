@@ -108,8 +108,7 @@ func generate_sword_enegy(face_direction: Vector2) -> void:
 		
 	var sword_energy: SwordEnergy = sword_energy_scene.instantiate() as SwordEnergy
 	get_tree().get_first_node_in_group("EntitiesLayer").add_child(sword_energy)
-	sword_energy.global_position = spawn_position
-	sword_energy.start_sowrd_energy_attack(face_direction)
+	sword_energy.start_sowrd_energy_attack(face_direction, spawn_position)
 
 func generate_sword_star_particles(direction: Vector2) -> void:
 	if direction == Vector2.DOWN:
