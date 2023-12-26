@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8hon0rm6s34r"
-path="res://.godot/imported/sword_tapping.right.png-95c1fb0d4105e159e2a90427b9780fd3.ctex"
+path="res://.godot/imported/sword_tapping.png-e2925852d7be54f033a6ebd8569d97d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sword/sword_tapping.right.png"
-dest_files=["res://.godot/imported/sword_tapping.right.png-95c1fb0d4105e159e2a90427b9780fd3.ctex"]
+source_file="res://assets/sword/sword_tapping.png"
+dest_files=["res://.godot/imported/sword_tapping.png-e2925852d7be54f033a6ebd8569d97d3.ctex"]
 
 [params]
 
