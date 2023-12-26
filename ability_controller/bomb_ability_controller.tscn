@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkou4b2laxv40"]
+
+[ext_resource type="Script" path="res://ability_controller/bomb_ability_controller.gd" id="1_w73ds"]
+
+[node name="BombAbilityController" type="Node"]
+script = ExtResource("1_w73ds")
+
+[node name="SpawnIntervalTimer" type="Timer" parent="."]

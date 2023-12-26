@@ -47,6 +47,7 @@ enabled=PackedStringArray("res://addons/com.timothyqiu.animation-resetter/plugin
 [file_customization]
 
 folder_colors={
+"res://ability/": "orange",
 "res://assets/": "pink",
 "res://component/": "blue",
 "res://enemy/": "red",

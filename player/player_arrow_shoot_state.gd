@@ -1,6 +1,6 @@
 extends PlayerState
 
-@onready var arrow_shooter: ArrowShootComponent = %ArrowShootComponent
+@onready var arrow_shooter: ArrowShootAbilityController = %ArrowShootAbilityController
 
 func on_enter() -> void:
 	shoot()
@@ -10,9 +10,10 @@ func on_enter() -> void:
 	
 	state_machine.change_state("PlayerIdleState")
 
+
 func shoot() -> void:
 	player.velocity = Vector2.ZERO
-	arrow_shooter.generate_arrow(player.face_direction, player.global_position)
+	arrow_shooter.ability_use(player.face_direction, player.global_position)
 	player.animation_tree["parameters/ArrowShoot/blend_position"] = player.face_direction
 	player.anim_playback.travel("ArrowShoot")
 	

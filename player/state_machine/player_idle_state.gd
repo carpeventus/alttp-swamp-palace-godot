@@ -7,8 +7,7 @@ func logic_update(delta: float) -> void:
 		state_machine.change_state("PlayerAttackState")
 		
 	elif Input.is_action_just_pressed("item_use"):
-		# use current item
-		state_machine.change_state("PlayerArrowShootState")
+		state_machine.change_state("PlayerAbilityUseState")
 	
 	elif player.is_request_loading:
 		state_machine.change_state("PlayerLoadingIdleState")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://2wdtrpxfh2ae"]
+[gd_scene load_steps=72 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
@@ -20,9 +20,11 @@
 [ext_resource type="Script" path="res://player/player_taping_state.gd" id="11_do8ku"]
 [ext_resource type="Texture2D" uid="uid://m8d2nbgul50g" path="res://assets/link/link_dying.png" id="12_6fq2b"]
 [ext_resource type="Script" path="res://player/player_arrow_shoot_state.gd" id="12_nxa1h"]
-[ext_resource type="PackedScene" uid="uid://dhiwspwuoak5d" path="res://component/arrow_shoot_component.tscn" id="12_w2ql6"]
 [ext_resource type="Texture2D" uid="uid://d3txcjb6jufns" path="res://assets/link/link_loading.png" id="13_27ofi"]
+[ext_resource type="PackedScene" uid="uid://dhiwspwuoak5d" path="res://ability_controller/arrow_shoot_ability_controller.tscn" id="13_it8bw"]
+[ext_resource type="Script" path="res://player/player_ability_use_state.gd" id="13_tbuia"]
 [ext_resource type="Texture2D" uid="uid://ctwqttr455wfi" path="res://assets/link/link_idle.png" id="14_etot4"]
+[ext_resource type="PackedScene" uid="uid://dkou4b2laxv40" path="res://ability_controller/bomb_ability_controller.tscn" id="15_k0wy5"]
 [ext_resource type="Texture2D" uid="uid://buttl34qafj8y" path="res://assets/link/link_spin_attack.png" id="18_e2vp4"]
 [ext_resource type="Texture2D" uid="uid://iypjj5uxmkhh" path="res://assets/link/link_bow.png" id="21_mrafi"]
 [ext_resource type="Texture2D" uid="uid://bs2ividwjj301" path="res://assets/link/link_tappin.png" id="22_3v1y1"]
@@ -3087,7 +3089,16 @@ player = NodePath("../..")
 script = ExtResource("12_nxa1h")
 player = NodePath("../..")
 
-[node name="ArrowShootComponent" parent="." instance=ExtResource("12_w2ql6")]
+[node name="PlayerAbilityUseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("13_tbuia")
+player = NodePath("../..")
+
+[node name="AbilityControllers" type="Node" parent="."]
+
+[node name="ArrowShootAbilityController" parent="AbilityControllers" instance=ExtResource("13_it8bw")]
+unique_name_in_owner = true
+
+[node name="BombAbilityController" parent="AbilityControllers" instance=ExtResource("15_k0wy5")]
 unique_name_in_owner = true
 
 [node name="HealthCompoent" parent="." instance=ExtResource("2_ov2ko")]
@@ -3104,6 +3115,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 position = Vector2(2.08165e-12, -12)
 shape = SubResource("CapsuleShape2D_pq0w0")
+
+[node name="DamageImmuneTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -3145,9 +3160,5 @@ material = SubResource("ShaderMaterial_g074g")
 visible = false
 
 [node name="Sword" parent="MainWeapon" instance=ExtResource("7_xqkuf")]
-
-[node name="DamageImmuneTimer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
 
 [editable path="MainWeapon/Sword"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhiwspwuoak5d"]
+
+[ext_resource type="Script" path="res://ability_controller/arrow_shoot_ability_controller.gd" id="1_dqe3s"]
+
+[node name="ArrowShootAbilityController" type="Node"]
+script = ExtResource("1_dqe3s")
+
+[node name="SpawnIntervalTimer" type="Timer" parent="."]
+one_shot = true
