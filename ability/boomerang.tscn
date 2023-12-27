@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://ekdgvv53f3vf"]
+
+[ext_resource type="Script" path="res://ability/boomerang.gd" id="1_ixdbh"]
+[ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_ys3dm"]
+[ext_resource type="Texture2D" uid="uid://1vpru5lhbqc2" path="res://assets/items/boomerang.png" id="3_6rmrh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4fbh"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_a41al"]
+resource_name = "rotate"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_whvdh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7s2ay"]
+_data = {
+"RESET": SubResource("Animation_whvdh"),
+"rotate": SubResource("Animation_a41al")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v528n"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fxd1"]
+radius = 8.0
+
+[node name="Boomerang" type="Area2D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_ixdbh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_x4fbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_6rmrh")
+offset = Vector2(2.08165e-12, -8)
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7s2ay")
+}
+autoplay = "rotate"
+
+[node name="ReturnBackDestoryArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnBackDestoryArea"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_v528n")
+
+[node name="HitBox" parent="." instance=ExtResource("1_ys3dm")]
+damage = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_4fxd1")

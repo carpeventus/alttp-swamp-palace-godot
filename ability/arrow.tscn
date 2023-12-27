@@ -147,7 +147,6 @@ script = ExtResource("1_fjnin")
 shape = SubResource("RectangleShape2D_tclrd")
 
 [node name="HitBox" parent="." instance=ExtResource("2_naeci")]
-damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("RectangleShape2D_2hxiq")

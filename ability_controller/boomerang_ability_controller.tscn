@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfhb3juviv013"]
+
+[ext_resource type="Script" path="res://ability_controller/boomerang_ability_controller.gd" id="1_sem4m"]
+
+[node name="BoomerangAbilityController" type="Node"]
+script = ExtResource("1_sem4m")
+
+[node name="SpawnIntervalTimer" type="Timer" parent="."]
+one_shot = true

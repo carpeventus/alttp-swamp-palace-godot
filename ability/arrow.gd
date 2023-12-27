@@ -8,8 +8,8 @@ var fly_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
-func start_arrow_fly(face_direction: Vector2, spawn_position: Vector2) -> void:
-	global_position = spawn_position
+func start_arrow_fly(face_direction: Vector2, pos: Vector2) -> void:
+	global_position = pos
 	rotation = face_direction.angle()
 	fly_direction = face_direction
 	await get_tree().create_timer(fly_time).timeout

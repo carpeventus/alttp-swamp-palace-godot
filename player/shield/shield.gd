@@ -49,3 +49,8 @@ func cancel_loading() -> void:
 func taping_enemy(face_direction: Vector2) -> void:
 	animation_tree["parameters/ShieldTapingEnemy/blend_position"] = face_direction
 	anim_playback.travel("ShieldTapingEnemy")
+	
+func boomerang(face_direction: Vector2) -> void:
+	animation_tree["parameters/ShieldBoomerang/blend_position"] = face_direction
+	anim_playback.travel("ShieldBoomerang")
+

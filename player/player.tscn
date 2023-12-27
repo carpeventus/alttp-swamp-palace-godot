@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://2wdtrpxfh2ae"]
+[gd_scene load_steps=78 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
@@ -22,11 +22,14 @@
 [ext_resource type="Texture2D" uid="uid://d3txcjb6jufns" path="res://assets/link/link_loading.png" id="13_27ofi"]
 [ext_resource type="PackedScene" uid="uid://dhiwspwuoak5d" path="res://ability_controller/arrow_shoot_ability_controller.tscn" id="13_it8bw"]
 [ext_resource type="Script" path="res://player/player_ability_use_state.gd" id="13_tbuia"]
+[ext_resource type="Script" path="res://player/player_boomerang_use_state.gd" id="14_c7fav"]
 [ext_resource type="Texture2D" uid="uid://ctwqttr455wfi" path="res://assets/link/link_idle.png" id="14_etot4"]
 [ext_resource type="PackedScene" uid="uid://dkou4b2laxv40" path="res://ability_controller/bomb_ability_controller.tscn" id="15_k0wy5"]
+[ext_resource type="PackedScene" uid="uid://cfhb3juviv013" path="res://ability_controller/boomerang_ability_controller.tscn" id="17_rnowy"]
 [ext_resource type="Texture2D" uid="uid://buttl34qafj8y" path="res://assets/link/link_spin_attack.png" id="18_e2vp4"]
 [ext_resource type="Texture2D" uid="uid://iypjj5uxmkhh" path="res://assets/link/link_bow.png" id="21_mrafi"]
 [ext_resource type="Texture2D" uid="uid://bs2ividwjj301" path="res://assets/link/link_tappin.png" id="22_3v1y1"]
+[ext_resource type="Texture2D" uid="uid://ch4kccrrkeu5w" path="res://assets/link/link_boomerang.png" id="25_hyadb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jcrg"]
 radius = 6.0
@@ -2954,9 +2957,317 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_rh3mx"]
+resource_name = "boomerang_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_hyadb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 96, 64, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainWeapon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShiledEquipment:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_47ruj"]
+resource_name = "boomerang_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_hyadb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 32, 64, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainWeapon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShiledEquipment:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_oh02t"]
+resource_name = "boomerang_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_hyadb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 64, 64, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainWeapon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShiledEquipment:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_as1y5"]
+resource_name = "boomerang_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_hyadb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainWeapon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShiledEquipment:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hujyj"]
 _data = {
 "RESET": SubResource("Animation_7l4dy"),
+"boomerang_down": SubResource("Animation_rh3mx"),
+"boomerang_left": SubResource("Animation_oh02t"),
+"boomerang_right": SubResource("Animation_as1y5"),
+"boomerang_up": SubResource("Animation_47ruj"),
 "bow_down": SubResource("Animation_2r6lf"),
 "bow_left": SubResource("Animation_da77n"),
 "bow_right": SubResource("Animation_ksqbd"),
@@ -3091,12 +3402,19 @@ player = NodePath("../..")
 script = ExtResource("13_tbuia")
 player = NodePath("../..")
 
+[node name="PlayerBoomerangUseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("14_c7fav")
+player = NodePath("../..")
+
 [node name="AbilityControllers" type="Node" parent="."]
 
 [node name="ArrowShootAbilityController" parent="AbilityControllers" instance=ExtResource("13_it8bw")]
 unique_name_in_owner = true
 
 [node name="BombAbilityController" parent="AbilityControllers" instance=ExtResource("15_k0wy5")]
+unique_name_in_owner = true
+
+[node name="BoomerangAbilityController" parent="AbilityControllers" instance=ExtResource("17_rnowy")]
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -3132,6 +3450,7 @@ parameters/conditions/loading_cancel = false
 parameters/conditions/moving = false
 parameters/ArrowShoot/blend_position = Vector2(-0.418694, 0.155779)
 parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Boomerang/blend_position = Vector2(-0.99676, -0.00181484)
 parameters/Hurt/blend_position = Vector2(-0.0961844, 0.894737)
 parameters/Idle/blend_position = Vector2(-0.461049, -0.114173)
 parameters/LoadingIdle/blend_position = Vector2(-0.510649, -0.00765026)
