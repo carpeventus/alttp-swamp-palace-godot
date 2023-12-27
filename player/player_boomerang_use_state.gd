@@ -15,7 +15,6 @@ func on_enter() -> void:
 
 
 func shoot() -> void:
-
 	player.velocity = Vector2.ZERO
 	var direction: Vector2 = player.face_direction
 	if player.input_direction.length() > 0:

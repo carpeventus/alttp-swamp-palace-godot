@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 	if should_turn_back:
 		var player: Player = get_tree().get_first_node_in_group("Player") as Player
 		if player:
-			var return_direction: Vector2 = (global_position - player.global_position).normalized()
 			global_position = global_position.move_toward(player.global_position, fly_speed * delta)
 	else:
 		global_position += fly_speed * fly_direction * delta
