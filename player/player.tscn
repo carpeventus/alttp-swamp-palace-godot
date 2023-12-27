@@ -1,9 +1,8 @@
-[gd_scene load_steps=72 format=3 uid="uid://2wdtrpxfh2ae"]
+[gd_scene load_steps=71 format=3 uid="uid://2wdtrpxfh2ae"]
 
 [ext_resource type="Texture2D" uid="uid://l0nt428miiv1" path="res://assets/link/link_walk.png" id="1_2jxos"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_x72g7"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="2_f4dtd"]
-[ext_resource type="PackedScene" uid="uid://b83jf2my7qspc" path="res://component/health_compoent.tscn" id="2_ov2ko"]
 [ext_resource type="Script" path="res://player/state_machine/player_idle_state.gd" id="3_7ijvq"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://ydvtsdsfjlny" path="res://player/player_animation_state_machine.tres" id="3_t4dy0"]
 [ext_resource type="Script" path="res://player/state_machine/player_walk_state.gd" id="4_4riik"]
@@ -3088,7 +3087,7 @@ player = NodePath("../..")
 script = ExtResource("12_nxa1h")
 player = NodePath("../..")
 
-[node name="PlayerAbilityUseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="PlayerBombUseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("13_tbuia")
 player = NodePath("../..")
 
@@ -3099,9 +3098,6 @@ unique_name_in_owner = true
 
 [node name="BombAbilityController" parent="AbilityControllers" instance=ExtResource("15_k0wy5")]
 unique_name_in_owner = true
-
-[node name="HealthCompoent" parent="." instance=ExtResource("2_ov2ko")]
-max_health = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, -12)

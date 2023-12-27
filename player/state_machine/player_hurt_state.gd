@@ -25,12 +25,12 @@ func be_hurt() -> void:
 
 	# 选择第一个damage造成伤害，减少hp（godot的字典保持插入时的顺序）
 	var damage: Damage = player.damage_hold.values()[0] as Damage
-	player.health_compoent.take_damge(damage.amount)
+	PlayerGlobal.health_component.take_damge(damage.amount)
 	# 如果只能造成一次伤害则立刻删除
 	if damage.hit_only_once:
 		player.damage_hold.erase(damage.source.name)
 	# 被攻击后如果血量大于0，则被击退且无敌
-	if player.health_compoent.current_health > 0:
+	if PlayerGlobal.health_component.current_health > 0:
 		var attack_direction: Vector2 = (player.global_position - damage.source.global_position).normalized()
 		if attack_direction == Vector2.ZERO:
 			attack_direction = -player.face_direction

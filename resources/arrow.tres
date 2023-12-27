@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://hum3kf0nasdk"]
+
+[ext_resource type="Script" path="res://resources/ability_resource.gd" id="1_pnimp"]
+
+[resource]
+script = ExtResource("1_pnimp")
+id = "arrow_ability"

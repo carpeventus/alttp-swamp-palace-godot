@@ -13,7 +13,6 @@ class_name Player extends CharacterBody2D
 @onready var anim_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var hurt_area: Area2D = $HurtArea
 @onready var damage_immune_timer: Timer = $DamageImmuneTimer
-@onready var health_compoent: HealthComponent = $HealthCompoent as HealthComponent
 
 # Equipment
 @onready var shield: Shield = $ShiledEquipment/Shield as Shield
@@ -42,7 +41,7 @@ func _ready() -> void:
 	hurt_area.body_exited.connect(_on_hurt_body_exited)
 	hurt_area.area_entered.connect(_on_hurt_area_entered)
 	hurt_area.area_exited.connect(_on_hurt_area_exited)
-	health_compoent.died_signal.connect(_on_dead)
+	PlayerGlobal.player_died_signal.connect(_on_dead)
 	damage_immune_timer.timeout.connect(_on_damage_immune_timer_timeout)
 	#endregion
 	init_animtion_params()
@@ -61,6 +60,7 @@ func _process(delta: float) -> void:
 
 #region hurtdead
 func _on_hurt_body_entered(body: Node2D) -> void:
+	print("hit player by body" + body.owner.name)
 	if body is Enemy:
 		var damage_instance: Damage = Damage.new()
 		damage_instance.amount = body.damage
@@ -72,7 +72,7 @@ func _on_hurt_body_exited(body: Node2D) -> void:
 	damage_hold.erase(body.name)
 	
 func _on_hurt_area_entered(area: Area2D) -> void:
-	print("hit player by " + area.owner.name)
+	print("hit player by area" + area.owner.name)
 	if area is HitAllBox:
 		var damage_instance: Damage = Damage.new()
 		damage_instance.amount = area.damage

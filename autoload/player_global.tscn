@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhlu2esi8d88a"]
+
+[ext_resource type="Script" path="res://autoload/player_global.gd" id="1_vaqqy"]
+[ext_resource type="PackedScene" uid="uid://b83jf2my7qspc" path="res://component/health_component.tscn" id="2_nwfxu"]
+
+[node name="PlayerGlobal" type="Node"]
+script = ExtResource("1_vaqqy")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_nwfxu")]
+max_health = 2
