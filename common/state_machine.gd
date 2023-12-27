@@ -27,12 +27,9 @@ func change_state(next_state_name: String) -> void:
 	if next.name == current_state.name:
 		return
 	
-	if debug:
-		var content: String = "[Time: {time} ms] {cur} -> {next}".format({"time": Time.get_ticks_msec(), "cur": current_state.name, "next":next_state_name})
-		print(content)
-	
-	print("change to " + next.name)
 	current_state.on_exit()
 	next.on_enter()
 	current_state = next
-		
+	if debug:
+		var content: String = "[Time: {time} ms] {cur} -> {next}".format({"time": Time.get_ticks_msec(), "cur": current_state.name, "next":next_state_name})
+		print(content)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://e15h27jhw606"]
+
+[ext_resource type="Script" path="res://hurt_all_box.gd" id="1_pjk1g"]
+
+[node name="HitAllBox" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_pjk1g")

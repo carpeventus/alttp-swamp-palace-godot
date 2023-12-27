@@ -40,6 +40,8 @@ func _ready() -> void:
 	#region signals
 	hurt_area.body_entered.connect(_on_hurt_body_entered) # 敌人等是body
 	hurt_area.body_exited.connect(_on_hurt_body_exited)
+	hurt_area.area_entered.connect(_on_hurt_area_entered)
+	hurt_area.area_exited.connect(_on_hurt_area_exited)
 	health_compoent.died_signal.connect(_on_dead)
 	damage_immune_timer.timeout.connect(_on_damage_immune_timer_timeout)
 	#endregion
@@ -68,6 +70,19 @@ func _on_hurt_body_entered(body: Node2D) -> void:
 
 func _on_hurt_body_exited(body: Node2D) -> void:
 	damage_hold.erase(body.name)
+	
+func _on_hurt_area_entered(area: Area2D) -> void:
+	print("hit player by " + area.owner.name)
+	if area is HitAllBox:
+		var damage_instance: Damage = Damage.new()
+		damage_instance.amount = area.damage
+		damage_instance.source = area
+		damage_instance.hit_only_once = area.hit_only_once
+		damage_hold[area.name] = damage_instance
+		check_take_damage()
+
+func _on_hurt_area_exited(area: Area2D) -> void:
+	damage_hold.erase(area.name)
 
 func check_take_damage() -> void:
 	# 无敌、无伤害来源或死亡

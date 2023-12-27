@@ -8,7 +8,7 @@ func on_enter() -> void:
 		return
 	
 	state_machine.change_state("PlayerIdleState")
-
+	
 func sword_attack() -> void:
 	player.velocity = Vector2.ZERO
 	player.animation_tree["parameters/Attack/blend_position"] = player.face_direction

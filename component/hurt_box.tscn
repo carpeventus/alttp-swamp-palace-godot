@@ -4,5 +4,5 @@
 
 [node name="HurtBox" type="Area2D"]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 24
 script = ExtResource("1_0tw0r")

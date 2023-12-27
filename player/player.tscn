@@ -3043,7 +3043,6 @@ shader_parameter/mix_ratio = 1.0
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_x72g7")
-enable_sword_energy = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_f4dtd")
@@ -3110,7 +3109,7 @@ shape = SubResource("CapsuleShape2D_0jcrg")
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 position = Vector2(2.08165e-12, -12)
