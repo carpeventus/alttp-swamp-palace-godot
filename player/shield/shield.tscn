@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://deik1lotbq6b4"]
+[gd_scene load_steps=30 format=3 uid="uid://deik1lotbq6b4"]
 
 [ext_resource type="Script" path="res://player/shield/shield.gd" id="1_uvcwo"]
 [ext_resource type="Texture2D" uid="uid://4kw0ux46gah4" path="res://assets/shield/shield_idle.png" id="2_att6a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://co6cia1hx16wk" path="res://assets/shield/shield_walk.png" id="2_ougok"]
 [ext_resource type="Texture2D" uid="uid://bcofm5ige3d3m" path="res://assets/shield/shield_loading.png" id="4_myda2"]
 [ext_resource type="Texture2D" uid="uid://wg775buof26i" path="res://assets/shield/shield_tapping.png" id="6_1jqa4"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://do557t2qpp4uc" path="res://player/shield/shield_animation_state_machine.tres" id="7_khge1"]
 
 [sub_resource type="Animation" id="Animation_a4f4q"]
 length = 0.001
@@ -1209,197 +1210,6 @@ _data = {
 "shild_idle_left": SubResource("Animation_5gn1e")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qqb5t"]
-animation = &"shield_attack_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d22iw"]
-animation = &"shield_attack_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujbod"]
-animation = &"shield_hide_attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s4lj7"]
-animation = &"shield_hide_attack"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hbksg"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_qqb5t")
-blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_d22iw")
-blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_ujbod")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_s4lj7")
-blend_point_3/pos = Vector2(-1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5u3c"]
-animation = &"shield_idle_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_upltb"]
-animation = &"shild_idle_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8in4"]
-animation = &"shield_idle_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqf3m"]
-animation = &"shild_idle_down"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_h3dqm"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_f5u3c")
-blend_point_0/pos = Vector2(1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_upltb")
-blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_c8in4")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_sqf3m")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ec8nm"]
-animation = &"shield_hide_loading_idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0hhi"]
-animation = &"shield_hide_loading_idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sygen"]
-animation = &"shield_loading_idle_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4xjc2"]
-animation = &"shield_loading_idle_up"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_i1abt"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_ec8nm")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_f0hhi")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_sygen")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_4xjc2")
-blend_point_3/pos = Vector2(0, -1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1arj"]
-animation = &"shield_hide_loading_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7c1k"]
-animation = &"shield_hide_loading_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5c0h2"]
-animation = &"shield_loading_walk_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5yxw"]
-animation = &"shield_loading_walk_down"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2iwf6"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_g1arj")
-blend_point_0/pos = Vector2(1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_l7c1k")
-blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_5c0h2")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_l5yxw")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6str"]
-animation = &"shield_hide_taping"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b8ulb"]
-animation = &"shield_hide_taping"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4wm5"]
-animation = &"shield_taping_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b85rv"]
-animation = &"shield_taping_up"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_37lax"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_l6str")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_b8ulb")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_p4wm5")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_b85rv")
-blend_point_3/pos = Vector2(0, -1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_be7sq"]
-animation = &"shield_walk_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch1fv"]
-animation = &"shield_walk_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4qdhs"]
-animation = &"shield_walk_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xhg64"]
-animation = &"shield_walk_left"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ob60i"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_be7sq")
-blend_point_0/pos = Vector2(0, -1.1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ch1fv")
-blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_4qdhs")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_xhg64")
-blend_point_3/pos = Vector2(-1, 0)
-min_space = Vector2(-1, -1.1)
-max_space = Vector2(1, 1.1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oeqi6"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jt4ph"]
-advance_mode = 2
-advance_condition = &"moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgo20"]
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s1dyr"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dk3xi"]
-advance_mode = 2
-advance_condition = &"loading_cancel"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n7067"]
-advance_mode = 2
-advance_condition = &"moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7rpe"]
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kv2"]
-advance_mode = 2
-advance_condition = &"loading_cancel"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4rqoc"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0tktu"]
-states/ShieldAttack/node = SubResource("AnimationNodeBlendSpace2D_hbksg")
-states/ShieldAttack/position = Vector2(306, -48.5)
-states/ShieldIdle/node = SubResource("AnimationNodeBlendSpace2D_h3dqm")
-states/ShieldIdle/position = Vector2(401, 101.25)
-states/ShieldLoadingIdle/node = SubResource("AnimationNodeBlendSpace2D_i1abt")
-states/ShieldLoadingIdle/position = Vector2(547.5, -94)
-states/ShieldLoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_2iwf6")
-states/ShieldLoadingWalk/position = Vector2(843, -99.5)
-states/ShieldTapingEnemy/node = SubResource("AnimationNodeBlendSpace2D_37lax")
-states/ShieldTapingEnemy/position = Vector2(402.646, 228.586)
-states/ShieldWalk/node = SubResource("AnimationNodeBlendSpace2D_ob60i")
-states/ShieldWalk/position = Vector2(643.5, 100.625)
-transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2"), "ShieldTapingEnemy", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_4rqoc")]
-graph_offset = Vector2(34.792, -138.414)
-
 [node name="Shield" type="Node2D"]
 script = ExtResource("1_uvcwo")
 
@@ -1408,7 +1218,7 @@ active = false
 libraries = {
 "": SubResource("AnimationLibrary_8xdq8")
 }
-tree_root = SubResource("AnimationNodeStateMachine_0tktu")
+tree_root = ExtResource("7_khge1")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/loading_cancel = false
