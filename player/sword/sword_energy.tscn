@@ -100,3 +100,5 @@ libraries = {
 autoplay = "rotate"
 
 [node name="HitEffectComponent" parent="." instance=ExtResource("4_flgfh")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -161,3 +161,5 @@ libraries = {
 "": SubResource("AnimationLibrary_0lf1j")
 }
 autoplay = "fly"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

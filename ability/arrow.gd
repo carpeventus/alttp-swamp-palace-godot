@@ -4,9 +4,11 @@ class_name Arrow extends Area2D
 @export var fly_time: float = 2.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var fly_direction: Vector2 = Vector2.ZERO
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
 
 func start_arrow_fly(face_direction: Vector2, pos: Vector2) -> void:
 	global_position = pos

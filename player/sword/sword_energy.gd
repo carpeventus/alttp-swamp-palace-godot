@@ -5,10 +5,12 @@ class_name SwordEnergy extends Area2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_effect: HitEffectComponent = $HitEffectComponent
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 var fly_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
 
 func start_sowrd_energy_attack(face_direction: Vector2, spawn_position: Vector2) -> void:
 	global_position = spawn_position

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnpl23u2ym0w0"]
+
+[ext_resource type="Script" path="res://ability/hookshot.gd" id="1_hxmck"]
+[ext_resource type="Texture2D" uid="uid://duc07dv6mj2iv" path="res://assets/items/hookshot-links.png" id="1_xb4fu"]
+[ext_resource type="Texture2D" uid="uid://c0mg54cyvhljm" path="res://assets/items/hookshot-tip.png" id="2_t6b00"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lupm0"]
+radius = 8.0
+
+[node name="Hookshot" type="Node2D"]
+script = ExtResource("1_hxmck")
+
+[node name="Links" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_xb4fu")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2.08165e-12, 8)
+
+[node name="Tip" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="Sprite2D" type="Sprite2D" parent="Tip"]
+texture = ExtResource("2_t6b00")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
+shape = SubResource("CircleShape2D_lupm0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Tip"]
