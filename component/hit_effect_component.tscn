@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6cei4bkvrnmo"]
+
+[ext_resource type="Script" path="res://component/hit_effect_component.gd" id="1_q3jab"]
+
+[node name="HitEffectComponent" type="Node"]
+script = ExtResource("1_q3jab")

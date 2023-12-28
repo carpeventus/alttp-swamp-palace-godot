@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ekdgvv53f3vf"]
+[gd_scene load_steps=11 format=3 uid="uid://ekdgvv53f3vf"]
 
 [ext_resource type="Script" path="res://ability/boomerang.gd" id="1_ixdbh"]
 [ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_ys3dm"]
 [ext_resource type="Texture2D" uid="uid://1vpru5lhbqc2" path="res://assets/items/boomerang.png" id="3_6rmrh"]
+[ext_resource type="PackedScene" uid="uid://c6cei4bkvrnmo" path="res://component/hit_effect_component.tscn" id="4_umyma"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4fbh"]
 radius = 8.0
@@ -89,3 +90,6 @@ damage = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_4fxd1")
+
+[node name="HitEffectComponent" parent="." instance=ExtResource("4_umyma")]
+spawn_pos_offset = Vector2(2.08165e-12, -8)

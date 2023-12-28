@@ -6,6 +6,7 @@ class_name Boomerang extends Area2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var return_back_destory_area: Area2D = $ReturnBackDestoryArea
+@onready var hit_effect: HitEffectComponent = $HitEffectComponent
 
 signal free_signal
 
@@ -36,11 +37,12 @@ func _process(delta: float) -> void:
 		
 
 func _on_body_entered(body: Node2D) -> void:
-	# 产生撞击特效
 	fly_speed = 0.0
 	free_signal.emit()
+	hit_effect.generate_hit_effect(global_position)
 	queue_free()
-	
+
+
 func _on_exit_screen() -> void:
 	should_turn_back = true
 	if not return_back_destory_area.monitoring:

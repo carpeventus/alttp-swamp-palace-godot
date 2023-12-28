@@ -4,6 +4,7 @@ class_name SwordEnergy extends Area2D
 @export var fly_time: float = 2.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hit_effect: HitEffectComponent = $HitEffectComponent
 
 var fly_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
@@ -20,6 +21,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	fly_speed = 0.0
-	animation_player.play("hit")
-	await animation_player.animation_finished
+	hit_effect.generate_hit_effect(global_position)
 	queue_free()

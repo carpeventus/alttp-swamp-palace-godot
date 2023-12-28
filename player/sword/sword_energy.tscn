@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dg6fvtmhkmmtg"]
+[gd_scene load_steps=10 format=3 uid="uid://dg6fvtmhkmmtg"]
 
 [ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_i1eff"]
 [ext_resource type="Script" path="res://player/sword/sword_energy.gd" id="1_mdpba"]
 [ext_resource type="Texture2D" uid="uid://u1h0asj0uk6h" path="res://assets/sword/sword_energy.png" id="2_5q3w7"]
-[ext_resource type="Texture2D" uid="uid://b4q1g6ncbsksy" path="res://assets/items/projectile_hit_effect.png" id="4_uj3mt"]
+[ext_resource type="PackedScene" uid="uid://c6cei4bkvrnmo" path="res://component/hit_effect_component.tscn" id="4_flgfh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0h7wd"]
 radius = 24.0
@@ -28,47 +28,6 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_5q3w7")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
-
-[sub_resource type="Animation" id="Animation_r4ggt"]
-resource_name = "hit"
-length = 0.24
-step = 0.04
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_uj3mt")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -76,19 +35,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [16]
 }
 
 [sub_resource type="Animation" id="Animation_0qwv3"]
@@ -111,22 +58,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_5q3w7")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -136,7 +71,6 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxfmf"]
 _data = {
 "RESET": SubResource("Animation_3ohs6"),
-"hit": SubResource("Animation_r4ggt"),
 "rotate": SubResource("Animation_0qwv3")
 }
 
@@ -164,3 +98,5 @@ libraries = {
 "": SubResource("AnimationLibrary_jxfmf")
 }
 autoplay = "rotate"
+
+[node name="HitEffectComponent" parent="." instance=ExtResource("4_flgfh")]
