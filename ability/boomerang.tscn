@@ -1,11 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://ekdgvv53f3vf"]
+[gd_scene load_steps=15 format=3 uid="uid://ekdgvv53f3vf"]
 
 [ext_resource type="Script" path="res://ability/boomerang.gd" id="1_ixdbh"]
 [ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_ys3dm"]
 [ext_resource type="Texture2D" uid="uid://1vpru5lhbqc2" path="res://assets/items/boomerang.png" id="3_6rmrh"]
 [ext_resource type="PackedScene" uid="uid://c6cei4bkvrnmo" path="res://component/hit_effect_component.tscn" id="4_umyma"]
+[ext_resource type="PackedScene" uid="uid://bg8gmkul3lrai" path="res://component/star_particle.tscn" id="5_f23h5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4fbh"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v528n"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fxd1"]
 radius = 8.0
 
 [sub_resource type="Animation" id="Animation_a41al"]
@@ -46,11 +53,29 @@ _data = {
 "rotate": SubResource("Animation_a41al")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v528n"]
-radius = 8.0
+[sub_resource type="Curve" id="Curve_g7kao"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4fxd1"]
-radius = 8.0
+[sub_resource type="CurveTexture" id="CurveTexture_m1coh"]
+curve = SubResource("Curve_g7kao")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gosbt"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2.08165e-12, -8, 2.08165e-12)
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+spread = 10.0
+angular_velocity_min = 60.0
+angular_velocity_max = 120.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.15
+radial_velocity_min = 10.0
+radial_velocity_max = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 20.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_m1coh")
 
 [node name="Boomerang" type="Area2D"]
 collision_layer = 0
@@ -63,17 +88,6 @@ position = Vector2(2.08165e-12, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_x4fbh")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_6rmrh")
-offset = Vector2(2.08165e-12, -8)
-hframes = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7s2ay")
-}
-autoplay = "rotate"
 
 [node name="ReturnBackDestoryArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -91,5 +105,19 @@ damage = 0
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_4fxd1")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_6rmrh")
+offset = Vector2(2.08165e-12, -8)
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7s2ay")
+}
+autoplay = "rotate"
+
 [node name="HitEffectComponent" parent="." instance=ExtResource("4_umyma")]
 spawn_pos_offset = Vector2(2.08165e-12, -8)
+
+[node name="StarParticles" parent="." instance=ExtResource("5_f23h5")]
+process_material = SubResource("ParticleProcessMaterial_gosbt")

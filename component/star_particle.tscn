@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg8gmkul3lrai"]
+
+[ext_resource type="Texture2D" uid="uid://btd6bsxthsa8y" path="res://assets/sword/sword_star.png" id="2_crgxp"]
+
+[sub_resource type="Curve" id="Curve_jq8rj"]
+_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_v335y"]
+curve = SubResource("Curve_jq8rj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2qd8c"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 15.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_max = 15.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_v335y")
+
+[node name="StarParticles" type="GPUParticles2D"]
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_2qd8c")
+texture = ExtResource("2_crgxp")
+lifetime = 0.4

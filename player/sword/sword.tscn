@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bkuwq2xt54gha"]
+[gd_scene load_steps=79 format=3 uid="uid://bkuwq2xt54gha"]
 
 [ext_resource type="Texture2D" uid="uid://dx4sogft4vt6q" path="res://assets/sword/sword.png" id="1_d1trc"]
 [ext_resource type="Script" path="res://player/sword/sword.gd" id="1_k25ba"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cu117fw4khqbf" path="res://assets/sword/sword_spin_attack.png" id="4_ke7tf"]
 [ext_resource type="Texture2D" uid="uid://8hon0rm6s34r" path="res://assets/sword/sword_tapping.png" id="5_s3neo"]
 [ext_resource type="Shader" path="res://player/sword/sword_spin_attack_ready.gdshader" id="6_vh77k"]
+[ext_resource type="Material" uid="uid://jmmfufo0lu2" path="res://resources/sword_star_particles.tres" id="8_72ixf"]
 [ext_resource type="Texture2D" uid="uid://btd6bsxthsa8y" path="res://assets/sword/sword_star.png" id="8_cm3bm"]
 
 [sub_resource type="Animation" id="Animation_cklrd"]
@@ -2936,33 +2937,14 @@ shader_parameter/color4 = Color(0.85098, 0.321569, 0.113725, 1)
 radius = 2.0
 height = 4.0
 
-[sub_resource type="Curve" id="Curve_cwy71"]
+[sub_resource type="Curve" id="Curve_i8odn"]
 _data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_7dsui"]
-curve = SubResource("Curve_cwy71")
+[sub_resource type="CurveTexture" id="CurveTexture_lrn17"]
+curve = SubResource("Curve_i8odn")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oglt2"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(-4, 10, 2.08165e-12)
-spread = 15.0
-orbit_velocity_min = 0.1
-orbit_velocity_max = 0.2
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-damping_max = 15.0
-scale_min = 0.5
-scale_max = 0.8
-scale_curve = SubResource("CurveTexture_7dsui")
-
-[sub_resource type="Curve" id="Curve_rpd03"]
-_data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_lw4qs"]
-curve = SubResource("Curve_rpd03")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67yhk"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6htxe"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(4, -32, 2.08165e-12)
 spread = 15.0
@@ -2972,16 +2954,16 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_max = 15.0
 scale_min = 0.5
 scale_max = 0.8
-scale_curve = SubResource("CurveTexture_lw4qs")
+scale_curve = SubResource("CurveTexture_lrn17")
 
-[sub_resource type="Curve" id="Curve_ssero"]
+[sub_resource type="Curve" id="Curve_5g3vp"]
 _data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_agpqj"]
-curve = SubResource("Curve_ssero")
+[sub_resource type="CurveTexture" id="CurveTexture_2uea2"]
+curve = SubResource("Curve_5g3vp")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5w2e6"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8n7qd"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(-18, -10, 2.08165e-12)
 spread = 15.0
@@ -2991,16 +2973,16 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_max = 15.0
 scale_min = 0.5
 scale_max = 0.8
-scale_curve = SubResource("CurveTexture_agpqj")
+scale_curve = SubResource("CurveTexture_2uea2")
 
-[sub_resource type="Curve" id="Curve_yi0wk"]
+[sub_resource type="Curve" id="Curve_ucutv"]
 _data = [Vector2(0, 0.0336348), 0.0, 0.0, 0, 0, Vector2(0.360927, 1), 0.0, 0.0, 0, 0, Vector2(0.655629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_857b5"]
-curve = SubResource("Curve_yi0wk")
+[sub_resource type="CurveTexture" id="CurveTexture_2moc1"]
+curve = SubResource("Curve_ucutv")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6j4op"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fmr63"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(20, -4, 2.08165e-12)
 spread = 15.0
@@ -3010,7 +2992,7 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_max = 15.0
 scale_min = 0.5
 scale_max = 0.8
-scale_curve = SubResource("CurveTexture_857b5")
+scale_curve = SubResource("CurveTexture_2moc1")
 
 [node name="Sword" type="Node2D"]
 script = ExtResource("1_k25ba")
@@ -3074,27 +3056,27 @@ position = Vector2(5, 10)
 [node name="SwordStarParticleDown" type="GPUParticles2D" parent="SwordStarParticles"]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_oglt2")
+process_material = ExtResource("8_72ixf")
 texture = ExtResource("8_cm3bm")
 lifetime = 0.4
 
 [node name="SwordStarParticleUp" type="GPUParticles2D" parent="SwordStarParticles"]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_67yhk")
+process_material = SubResource("ParticleProcessMaterial_6htxe")
 texture = ExtResource("8_cm3bm")
 lifetime = 0.4
 
 [node name="SwordStarParticleLeft" type="GPUParticles2D" parent="SwordStarParticles"]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_5w2e6")
+process_material = SubResource("ParticleProcessMaterial_8n7qd")
 texture = ExtResource("8_cm3bm")
 lifetime = 0.4
 
 [node name="SwordStarParticleRight" type="GPUParticles2D" parent="SwordStarParticles"]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_6j4op")
+process_material = SubResource("ParticleProcessMaterial_fmr63")
 texture = ExtResource("8_cm3bm")
 lifetime = 0.5
