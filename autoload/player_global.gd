@@ -24,7 +24,7 @@ func init_abilities() -> void:
 	ability_dict[bomb_ability.id] = "PlayerBombUseState"
 	ability_dict[boomerang_ability.id] = "PlayerBoomerangUseState"
 	# default selected bow and arrow
-	current_selected_ability_name = boomerang_ability.id
+	current_selected_ability_name = arrow_ability.id
 	
 func add_ability(ability_name: String, state_name: String) -> void:
 	ability_dict[ability_name] = state_name

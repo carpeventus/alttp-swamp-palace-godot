@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs2ryslk7pxxh"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4ld2p"]
+[ext_resource type="PackedScene" uid="uid://b83jf2my7qspc" path="res://component/health_component.tscn" id="2_4pylb"]
+[ext_resource type="PackedScene" uid="uid://f0am1bidysrd" path="res://component/hurt_box.tscn" id="3_jx57u"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_4ld2p")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_4pylb")]
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_jx57u")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

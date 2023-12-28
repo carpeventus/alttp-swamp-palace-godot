@@ -1,4 +1,4 @@
-extends Area2D
+class_name HurtBox extends Area2D
 
 @export var health_component: HealthComponent
 
@@ -19,5 +19,6 @@ func _on_area_entered(area: Area2D) -> void:
 	# 设置伤害来源为Owner
 	damage_instantce.source = hitbox.owner
 	damage_instantce.hit_only_once = hitbox.hit_only_once
+	damage_instantce.make_stun = hitbox.make_stun
 	hurt_signal.emit(damage_instantce)
 	

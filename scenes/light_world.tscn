@@ -1,16 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://rg2y3x78idy2"]
 
 [ext_resource type="PackedScene" uid="uid://2wdtrpxfh2ae" path="res://player/player.tscn" id="1_4hkn1"]
-[ext_resource type="PackedScene" uid="uid://cl8vnjqr4s5rb" path="res://enemy/basic_enemy.tscn" id="2_mr3sg"]
+[ext_resource type="PackedScene" uid="uid://dbsuq0ih5n4fg" path="res://enemy/basic_enemy.tscn" id="2_mr3sg"]
 [ext_resource type="PackedScene" uid="uid://b86vt7kgyce01" path="res://wall.tscn" id="3_lsvg6"]
 
 [node name="LightWorld" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(232, 139)
-
-[node name="BasicEnemy" parent="." instance=ExtResource("2_mr3sg")]
-position = Vector2(179, 140)
 
 [node name="Wall" parent="." instance=ExtResource("3_lsvg6")]
 position = Vector2(270, 50)
@@ -23,3 +20,6 @@ position = Vector2(232, 139)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Player"]
 remote_path = NodePath("../../../Camera2D")
+
+[node name="BasicEnemy" parent="." instance=ExtResource("2_mr3sg")]
+position = Vector2(163, 135)
