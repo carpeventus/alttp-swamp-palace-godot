@@ -26,5 +26,5 @@ func _on_hurt(damage_source: Damage) -> void:
 		if attack_direction == Vector2.ZERO:
 			attack_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 		velocity = knockback_force * attack_direction
-		var tween: Tween = create_tween()
+		var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(self, "velocity", Vector2.ZERO, 0.4)
