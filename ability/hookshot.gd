@@ -1,33 +1,44 @@
 class_name Hookshot extends Node2D
 
+@export var shoot_duration: float = 0.5
+@export var back_duration: float = 0.3
+@export var back_offset_distance: float = 16.0
+
 @onready var tip: Area2D = $Tip
 @onready var links: Sprite2D = $Links
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $Tip/VisibleOnScreenNotifier2D
 
-signal hooked_signal(hooked_position: Vector2)
-
 var tween_links: Tween
-var reversing: bool = false
+var is_backing: bool = false
 var init_position: Vector2
-var back_duration: float
+var back_direction_offset_distance: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	tip.body_entered.connect(_on_body_enterd_tip)
 	visible_on_screen_notifier.screen_exited.connect(_on_screen_exited)
 
-func generate_hookshot(spawn_position: Vector2, direction: Vector2, max_length: float, duration: float, reverse_duration: float) -> void:
+func generate_hookshot(spawn_position: Vector2, face_direction: Vector2, max_length: float) -> void:
 	global_position = spawn_position
-	rotation = direction.normalized().angle()
+	rotation = face_direction.angle()
 	# 暂存
 	init_position = spawn_position
-	back_duration = reverse_duration
-	var target_position: Vector2 = direction * max_length + spawn_position
+	if face_direction == Vector2.DOWN:
+		back_direction_offset_distance = Vector2(0, -back_offset_distance)
+	elif face_direction == Vector2.UP:
+		back_direction_offset_distance = Vector2(0, back_offset_distance)
+	elif face_direction == Vector2.LEFT:
+		back_direction_offset_distance = Vector2(back_offset_distance, 0)
+	elif face_direction == Vector2.RIGHT:
+		back_direction_offset_distance = Vector2(-back_offset_distance, 0)
 	
-	shoot(max_length, target_position, duration)
+	var target_position: Vector2 = face_direction * max_length + spawn_position
+	
+	shoot(max_length, target_position, shoot_duration)
 	await tween_links.finished
-	if not reversing:
-		reversing = true
-		reverse_shoot(back_duration, init_position)
+	# 到达最大长度自动收回
+	if not is_backing:
+		is_backing = true
+		take_back(back_duration, init_position)
 
 	
 	
@@ -39,23 +50,38 @@ func shoot(max_length: float, target_position: Vector2, duration: float) -> void
 	tween_links.tween_property(links, "region_rect", Rect2(0, 0, max_length, 8), duration)
 	tween_links.tween_property(tip, "global_position", target_position, duration)
 
-func reverse_shoot(duration: float, target_position: Vector2) -> void:
+func take_back(duration: float, target_position: Vector2) -> void:
 	shoot(0, target_position, duration)
 	await tween_links.finished
 	queue_free()
-	
-func _on_screen_exited() -> void:
-	if not reversing:
-		reversing = true
-	reverse_shoot(back_duration, init_position)
 
+# 超出屏幕自动收回
+func _on_screen_exited() -> void:
+	if not is_backing:
+		is_backing = true
+	take_back(back_duration, init_position)
+
+# 击中时，需要固定tip，同步移动links和player
 func _on_body_enterd_tip(body: Node2D) -> void:
 	if tween_links:
 		tween_links.kill()
-	await get_tree().create_timer(0.2).timeout
-	if not reversing:
-		reversing = true
-	reverse_shoot(back_duration, init_position)
-	hooked_signal.emit(tip.global_position)
+	# add a hitstop
+	await get_tree().create_timer(0.3).timeout
+	if not is_backing:
+		is_backing = true
+		pull_hookshot_to_tip()
 	
 
+func pull_hookshot_to_tip() -> void:
+	var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
+	if not player:
+		queue_free()
+		return
+	var tween_pull: Tween = create_tween().set_parallel()
+	var target_pos: Vector2 = tip.global_position + back_direction_offset_distance
+	tween_pull.tween_property(links, "offset", Vector2(0.0, 0.0), back_duration)
+	tween_pull.tween_property(links, "region_rect", Rect2(0, 0, 0, 8), back_duration)
+	tween_pull.tween_property(links, "global_position", target_pos, back_duration)
+	tween_pull.tween_property(player, "global_position", target_pos, back_duration)
+	await tween_pull.finished
+	queue_free()

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://duc07dv6mj2iv" path="res://assets/items/hookshot-links.png" id="1_xb4fu"]
 [ext_resource type="Texture2D" uid="uid://c0mg54cyvhljm" path="res://assets/items/hookshot-tip.png" id="2_t6b00"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lupm0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc7a3"]
 radius = 8.0
 
 [node name="Hookshot" type="Node2D"]
@@ -24,6 +24,7 @@ collision_mask = 32
 texture = ExtResource("2_t6b00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
-shape = SubResource("CircleShape2D_lupm0")
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_rc7a3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Tip"]

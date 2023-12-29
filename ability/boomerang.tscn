@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ekdgvv53f3vf"]
+[gd_scene load_steps=14 format=3 uid="uid://ekdgvv53f3vf"]
 
 [ext_resource type="Script" path="res://ability/boomerang.gd" id="1_ixdbh"]
 [ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="1_ys3dm"]
@@ -7,9 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bg8gmkul3lrai" path="res://component/star_particle.tscn" id="5_f23h5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4fbh"]
-radius = 8.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v528n"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4fxd1"]
@@ -88,15 +85,6 @@ position = Vector2(2.08165e-12, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_x4fbh")
-
-[node name="ReturnBackDestoryArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnBackDestoryArea"]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_v528n")
 
 [node name="HitBox" parent="." instance=ExtResource("1_ys3dm")]
 damage = 0
