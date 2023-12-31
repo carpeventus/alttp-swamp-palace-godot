@@ -4,6 +4,3 @@
 
 [node name="BoomerangAbilityController" type="Node"]
 script = ExtResource("1_sem4m")
-
-[node name="SpawnIntervalTimer" type="Timer" parent="."]
-one_shot = true

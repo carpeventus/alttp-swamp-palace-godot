@@ -14,23 +14,30 @@ var arrow_amount: int = 0
 var arrow_ability: AbilityResource = preload("res://resources/arrow.tres")
 var bomb_ability: AbilityResource = preload("res://resources/bomb.tres")
 var boomerang_ability: AbilityResource = preload("res://resources/boomerang.tres")
+## TODO test
+var hookshot_ability: AbilityResource = preload("res://resources/hookshot.tres")
 #endregion
 
 var ability_dict: Dictionary = {}
-var current_selected_ability_name: String
+var current_selected_ability_id: String
 
 func init_abilities() -> void:
-	ability_dict[arrow_ability.id] = "PlayerArrowShootState"
-	ability_dict[bomb_ability.id] = "PlayerBombUseState"
-	ability_dict[boomerang_ability.id] = "PlayerBoomerangUseState"
+	add_ability(arrow_ability)
+	add_ability(bomb_ability)
+	add_ability(boomerang_ability)
+	## TODO test
+	add_ability(hookshot_ability)
 	# default selected bow and arrow
-	current_selected_ability_name = boomerang_ability.id
+	select_ability(hookshot_ability.id)
+
+func select_ability(ability_id: String) -> void:
+	current_selected_ability_id = ability_id
 	
-func add_ability(ability_name: String, state_name: String) -> void:
-	ability_dict[ability_name] = state_name
+func add_ability(ability_resource: AbilityResource) -> void:
+	ability_dict[ability_resource.id] = ability_resource.related_state
 
 func get_current_ability_state() -> String:
-	return ability_dict[current_selected_ability_name]
+	return ability_dict[current_selected_ability_id]
 
 func _ready() -> void:
 	health_component.died_signal.connect(_on_player_died)

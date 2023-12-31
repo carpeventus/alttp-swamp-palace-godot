@@ -2,11 +2,11 @@ class_name PlayerState extends State
 
 var state_machine: StateMachine
 
-@export var player: Player
+var player: Player
 
 func _ready() -> void:
 	state_machine = get_parent() as StateMachine
-
+	player = get_tree().get_first_node_in_group("Player") as Player
 
 func logic_update(delta: float) -> void:
 	# loading状态下不能改变朝向

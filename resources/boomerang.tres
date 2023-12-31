@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_duu72")
 id = "boomerang_ability"
+related_state = "PlayerBoomerangUseState"

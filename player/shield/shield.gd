@@ -54,3 +54,10 @@ func boomerang(face_direction: Vector2) -> void:
 	animation_tree["parameters/ShieldBoomerang/blend_position"] = face_direction
 	anim_playback.travel("ShieldBoomerang")
 
+func hookshot(face_direction: Vector2) -> void:
+	animation_tree["parameters/conditions/hookshot_used"] = false
+	animation_tree["parameters/ShieldHookshot/blend_position"] = face_direction
+	anim_playback.travel("ShieldHookshot")
+	
+func hookshot_used_done() -> void:
+	animation_tree["parameters/conditions/hookshot_used"] = true

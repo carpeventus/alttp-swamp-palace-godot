@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_pnimp")
 id = "arrow_ability"
+related_state = "PlayerArrowShootState"

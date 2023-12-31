@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://deik1lotbq6b4"]
+[gd_scene load_steps=36 format=3 uid="uid://deik1lotbq6b4"]
 
 [ext_resource type="Script" path="res://player/shield/shield.gd" id="1_uvcwo"]
 [ext_resource type="Texture2D" uid="uid://4kw0ux46gah4" path="res://assets/shield/shield_idle.png" id="2_att6a"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://wg775buof26i" path="res://assets/shield/shield_tapping.png" id="6_1jqa4"]
 [ext_resource type="Texture2D" uid="uid://dqkud7080iyqc" path="res://assets/shield/shield_boomerang.png" id="7_3os31"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://do557t2qpp4uc" path="res://player/shield/shield_animation_state_machine.tres" id="7_khge1"]
+[ext_resource type="Texture2D" uid="uid://coxsnvuct1gm6" path="res://assets/shield/shield_hookshot.png" id="8_t4pls"]
 
 [sub_resource type="Animation" id="Animation_a4f4q"]
 length = 0.001
@@ -202,45 +203,153 @@ tracks/4/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_x85rf"]
+resource_name = "shield_boomerang_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_3os31")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldSprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(32, 0, 32, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShieldSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5omvx"]
+resource_name = "shield_boomerang_hide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_58kxl"]
+resource_name = "shield_boomerang_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_3os31")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldSprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShieldSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_n04da"]
 resource_name = "shield_hide_attack"
 length = 0.24
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ex5ia"]
-resource_name = "shield_hide_loading_idle"
-length = 0.4
-loop_mode = 1
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_c6rac"]
-resource_name = "shield_hide_loading_walk"
-length = 0.6
-loop_mode = 1
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1186,9 +1295,10 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_x85rf"]
-resource_name = "shield_boomerang_down"
-length = 0.2
+[sub_resource type="Animation" id="Animation_a8r3w"]
+resource_name = "shield_hookshot_down"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1199,7 +1309,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_3os31")]
+"values": [ExtResource("8_t4pls")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1250,9 +1360,10 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_58kxl"]
-resource_name = "shield_boomerang_up"
-length = 0.2
+[sub_resource type="Animation" id="Animation_8l246"]
+resource_name = "shield_hookshot_up"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1263,7 +1374,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_3os31")]
+"values": [ExtResource("8_t4pls")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1314,9 +1425,10 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_5omvx"]
-resource_name = "shield_boomerang_hide"
-length = 0.2
+[sub_resource type="Animation" id="Animation_hhrhr"]
+resource_name = "shield_hide_cycle"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1339,9 +1451,10 @@ _data = {
 "shield_boomerang_hide": SubResource("Animation_5omvx"),
 "shield_boomerang_up": SubResource("Animation_58kxl"),
 "shield_hide_attack": SubResource("Animation_n04da"),
-"shield_hide_loading_idle": SubResource("Animation_ex5ia"),
-"shield_hide_loading_walk": SubResource("Animation_c6rac"),
+"shield_hide_cycle": SubResource("Animation_hhrhr"),
 "shield_hide_taping": SubResource("Animation_0hkdg"),
+"shield_hookshot_down": SubResource("Animation_a8r3w"),
+"shield_hookshot_up": SubResource("Animation_8l246"),
 "shield_idle_right": SubResource("Animation_eidyd"),
 "shield_idle_up": SubResource("Animation_kqevs"),
 "shield_loading_idle_down": SubResource("Animation_0818u"),
@@ -1368,11 +1481,13 @@ libraries = {
 }
 tree_root = ExtResource("7_khge1")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/hookshot_used = false
 parameters/conditions/idle = false
 parameters/conditions/loading_cancel = false
 parameters/conditions/moving = false
 parameters/ShieldAttack/blend_position = Vector2(0, 0)
 parameters/ShieldBoomerang/blend_position = Vector2(0, 0)
+parameters/ShieldHookshot/blend_position = Vector2(0, 0)
 parameters/ShieldIdle/blend_position = Vector2(-0.000981331, 1)
 parameters/ShieldLoadingIdle/blend_position = Vector2(0, 0)
 parameters/ShieldLoadingWalk/blend_position = Vector2(0, 0)

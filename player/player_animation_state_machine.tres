@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=65 format=3 uid="uid://ydvtsdsfjlny"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=71 format=3 uid="uid://ydvtsdsfjlny"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ysndc"]
 animation = &"bow_left"
@@ -66,6 +66,29 @@ blend_point_1/pos = Vector2(1, 0)
 blend_point_2/node = SubResource("AnimationNodeAnimation_jf41b")
 blend_point_2/pos = Vector2(0, 1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_2f8e4")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k0g7w"]
+animation = &"hookshot_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp0pl"]
+animation = &"hookshot_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hstwy"]
+animation = &"hookshot_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ypjvy"]
+animation = &"hookshot_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gp8qo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_k0g7w")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_lp0pl")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_hstwy")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ypjvy")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
@@ -286,14 +309,20 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t8lm0"]
+advance_mode = 2
+advance_condition = &"hookshot_used"
+
 [resource]
 states/ArrowShoot/node = SubResource("AnimationNodeBlendSpace2D_8a21b")
 states/ArrowShoot/position = Vector2(69.5, -27.723)
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_4gqin")
 states/Attack/position = Vector2(350.75, -74.5175)
 states/Boomerang/node = SubResource("AnimationNodeBlendSpace2D_f33i6")
-states/Boomerang/position = Vector2(181.5, 221.617)
+states/Boomerang/position = Vector2(94.5, 163.663)
 states/End/position = Vector2(1265, 260.312)
+states/Hookshot/node = SubResource("AnimationNodeBlendSpace2D_gp8qo")
+states/Hookshot/position = Vector2(173, 261.626)
 states/Hurt/node = SubResource("AnimationNodeBlendSpace2D_1rrsv")
 states/Hurt/position = Vector2(361.5, 226.87)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_1j77v")
@@ -304,12 +333,12 @@ states/LoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_vly4b")
 states/LoadingWalk/position = Vector2(797.75, -72.4909)
 states/SpinAttack/node = SubResource("AnimationNodeBlendSpace2D_ohrtt")
 states/SpinAttack/position = Vector2(559.375, 221.457)
-states/Start/position = Vector2(137, 91.8125)
+states/Start/position = Vector2(-67.5, 91.8125)
 states/TapingEnemy/node = SubResource("AnimationNodeBlendSpace2D_kofnx")
 states/TapingEnemy/position = Vector2(148, -119.764)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_lb63m")
 states/Walk/position = Vector2(598.5, 91.375)
 states/dying/node = SubResource("AnimationNodeAnimation_cfeeo")
-states/dying/position = Vector2(18.75, 234.239)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_it64h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_fyoqy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_n4ck4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_6iidk"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_wvaq4"), "LoadingIdle", "LoadingWalk", SubResource("AnimationNodeStateMachineTransition_b6ls8"), "LoadingWalk", "LoadingIdle", SubResource("AnimationNodeStateMachineTransition_sp52d"), "LoadingIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_jk11t"), "SpinAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_xtui4"), "TapingEnemy", "Idle", SubResource("AnimationNodeStateMachineTransition_mtwav"), "LoadingWalk", "Idle", SubResource("AnimationNodeStateMachineTransition_gpx0o"), "ArrowShoot", "Idle", SubResource("AnimationNodeStateMachineTransition_4m5nu"), "Boomerang", "Idle", SubResource("AnimationNodeStateMachineTransition_vcsef")]
-graph_offset = Vector2(-80, 18.277)
+states/dying/position = Vector2(751.75, 92.3492)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_it64h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_fyoqy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_n4ck4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_6iidk"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_wvaq4"), "LoadingIdle", "LoadingWalk", SubResource("AnimationNodeStateMachineTransition_b6ls8"), "LoadingWalk", "LoadingIdle", SubResource("AnimationNodeStateMachineTransition_sp52d"), "LoadingIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_jk11t"), "SpinAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_xtui4"), "TapingEnemy", "Idle", SubResource("AnimationNodeStateMachineTransition_mtwav"), "LoadingWalk", "Idle", SubResource("AnimationNodeStateMachineTransition_gpx0o"), "ArrowShoot", "Idle", SubResource("AnimationNodeStateMachineTransition_4m5nu"), "Boomerang", "Idle", SubResource("AnimationNodeStateMachineTransition_vcsef"), "Hookshot", "Idle", SubResource("AnimationNodeStateMachineTransition_t8lm0")]
+graph_offset = Vector2(-80, 16.021)

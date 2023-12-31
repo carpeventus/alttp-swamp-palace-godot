@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_8xw8c")
 id = "bomb_ability"
+related_state = "PlayerBombUseState"

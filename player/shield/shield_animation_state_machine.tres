@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=46 format=3 uid="uid://do557t2qpp4uc"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=52 format=3 uid="uid://do557t2qpp4uc"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qqb5t"]
 animation = &"shield_attack_down"
@@ -46,6 +46,29 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_xuevk")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b3ac5"]
+animation = &"shield_hide_cycle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m8jr"]
+animation = &"shield_hide_cycle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qi2sr"]
+animation = &"shield_hookshot_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_51fl3"]
+animation = &"shield_hookshot_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_541cn"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b3ac5")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_8m8jr")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_qi2sr")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_51fl3")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5u3c"]
 animation = &"shield_idle_right"
 
@@ -70,10 +93,10 @@ blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ec8nm"]
-animation = &"shield_hide_loading_idle"
+animation = &"shield_hide_cycle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0hhi"]
-animation = &"shield_hide_loading_idle"
+animation = &"shield_hide_cycle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sygen"]
 animation = &"shield_loading_idle_down"
@@ -93,10 +116,10 @@ blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1arj"]
-animation = &"shield_hide_loading_walk"
+animation = &"shield_hide_cycle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7c1k"]
-animation = &"shield_hide_loading_walk"
+animation = &"shield_hide_cycle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5c0h2"]
 animation = &"shield_loading_walk_up"
@@ -202,11 +225,17 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_td6yy"]
+advance_mode = 2
+advance_condition = &"hookshot_used"
+
 [resource]
 states/ShieldAttack/node = SubResource("AnimationNodeBlendSpace2D_hbksg")
-states/ShieldAttack/position = Vector2(106.5, -49)
+states/ShieldAttack/position = Vector2(19, -39)
 states/ShieldBoomerang/node = SubResource("AnimationNodeBlendSpace2D_duea5")
 states/ShieldBoomerang/position = Vector2(313.292, -93.457)
+states/ShieldHookshot/node = SubResource("AnimationNodeBlendSpace2D_541cn")
+states/ShieldHookshot/position = Vector2(177.292, 255.086)
 states/ShieldIdle/node = SubResource("AnimationNodeBlendSpace2D_h3dqm")
 states/ShieldIdle/position = Vector2(401, 101.25)
 states/ShieldLoadingIdle/node = SubResource("AnimationNodeBlendSpace2D_i1abt")
@@ -214,8 +243,9 @@ states/ShieldLoadingIdle/position = Vector2(547.5, -94)
 states/ShieldLoadingWalk/node = SubResource("AnimationNodeBlendSpace2D_2iwf6")
 states/ShieldLoadingWalk/position = Vector2(843, -99.5)
 states/ShieldTapingEnemy/node = SubResource("AnimationNodeBlendSpace2D_37lax")
-states/ShieldTapingEnemy/position = Vector2(402.646, 228.586)
+states/ShieldTapingEnemy/position = Vector2(574.646, 241.586)
 states/ShieldWalk/node = SubResource("AnimationNodeBlendSpace2D_ob60i")
 states/ShieldWalk/position = Vector2(643.5, 100.625)
-transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2"), "ShieldTapingEnemy", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_4rqoc"), "ShieldBoomerang", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_c0hfy")]
-graph_offset = Vector2(-141.208, -292.414)
+states/Start/position = Vector2(-6.5, 98.25)
+transitions = ["Start", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_oeqi6"), "ShieldIdle", "ShieldWalk", SubResource("AnimationNodeStateMachineTransition_jt4ph"), "ShieldWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_hgo20"), "ShieldAttack", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_s1dyr"), "ShieldLoadingIdle", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_dk3xi"), "ShieldLoadingIdle", "ShieldLoadingWalk", SubResource("AnimationNodeStateMachineTransition_n7067"), "ShieldLoadingWalk", "ShieldLoadingIdle", SubResource("AnimationNodeStateMachineTransition_s7rpe"), "ShieldLoadingWalk", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_p6kv2"), "ShieldTapingEnemy", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_4rqoc"), "ShieldBoomerang", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_c0hfy"), "ShieldHookshot", "ShieldIdle", SubResource("AnimationNodeStateMachineTransition_td6yy")]
+graph_offset = Vector2(-125.208, 78.9193)
