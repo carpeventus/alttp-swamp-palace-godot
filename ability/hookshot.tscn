@@ -24,34 +24,34 @@ texture = ExtResource("1_xb4fu")
 region_enabled = true
 region_rect = Rect2(2.08165e-12, 2.08165e-12, 2.08165e-12, 8)
 
-[node name="Tip" type="Area2D" parent="."]
+[node name="HookableTip" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
 
-[node name="AreaDetectOthers" type="Area2D" parent="Tip"]
+[node name="AreaDetectOthers" type="Area2D" parent="HookableTip"]
 collision_layer = 0
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip/AreaDetectOthers"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookableTip/AreaDetectOthers"]
 position = Vector2(4, 2.08165e-12)
 shape = SubResource("CircleShape2D_p5ktj")
 
-[node name="HitBox" parent="Tip" instance=ExtResource("3_qetkt")]
+[node name="HitBox" parent="HookableTip" instance=ExtResource("3_qetkt")]
 damage = 0
 make_stun = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookableTip/HitBox"]
 position = Vector2(4, 2.08165e-12)
 shape = SubResource("CircleShape2D_fgnxl")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tip"]
+[node name="Sprite2D" type="Sprite2D" parent="HookableTip"]
 texture = ExtResource("2_t6b00")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookableTip"]
 position = Vector2(4, 2.08165e-12)
 shape = SubResource("CircleShape2D_rc7a3")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Tip"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="HookableTip"]
 rect = Rect2(2.08165e-12, -4, 8, 8)
 
-[node name="HitEffectComponent" parent="Tip" instance=ExtResource("5_iokih")]
+[node name="HitEffectComponent" parent="HookableTip" instance=ExtResource("5_iokih")]

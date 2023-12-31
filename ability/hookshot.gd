@@ -6,7 +6,7 @@ class_name Hookshot extends Node2D
 @export var player_positon_offset_y: float = 8.0
 @export var back_offset_distance: float = 16.0
 
-@onready var tip: Area2D = $Tip
+@onready var tip: Area2D = $HookableTip
 @onready var links: Sprite2D = $Links
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $Tip/VisibleOnScreenNotifier2D
 @onready var hit_effect: HitEffectComponent = $Tip/HitEffectComponent
