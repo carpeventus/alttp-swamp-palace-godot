@@ -6,7 +6,6 @@
 size = Vector2(81, 57)
 
 [node name="Wall" type="StaticBody2D"]
-collision_layer = 33
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708

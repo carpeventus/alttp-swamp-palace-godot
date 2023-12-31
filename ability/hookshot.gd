@@ -10,6 +10,7 @@ class_name Hookshot extends Node2D
 @onready var links: Sprite2D = $Links
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $Tip/VisibleOnScreenNotifier2D
 @onready var hit_effect: HitEffectComponent = $Tip/HitEffectComponent
+@onready var area_detect_others: Area2D = $Tip/AreaDetectOthers
 
 
 signal free_signal
@@ -21,6 +22,7 @@ var back_direction_offset_distance: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	tip.body_entered.connect(_on_body_enterd_tip)
+	area_detect_others.body_entered.connect(_on_body_enterd)
 	visible_on_screen_notifier.screen_exited.connect(_on_screen_exited)
 
 func generate_hookshot(spawn_position: Vector2, face_direction: Vector2, max_length: float) -> void:
@@ -58,19 +60,19 @@ func _on_screen_exited() -> void:
 
 # 击中时，需要固定tip，同步移动links和player
 func _on_body_enterd_tip(body: Node2D) -> void:
-	if not body is HookAble:
-		hit_effect.generate_hit_effect(tip.global_position)
+	if tween_links:
+		tween_links.kill()
+	if not visible_on_screen_notifier.is_on_screen():
 		take_back(back_duration, init_position)
 	else:
-		if tween_links:
-			tween_links.kill()
-		if not visible_on_screen_notifier.is_on_screen():
-			take_back(back_duration, init_position)
-		else:
-			# add a hitstop
-			await get_tree().create_timer(0.3).timeout
-			pull_hookshot_to_tip()
+		# add a hitstop
+		await get_tree().create_timer(0.3).timeout
+		pull_hookshot_to_tip()
 
+func _on_body_enterd(body: Node2D) -> void:
+	print(body.name)
+	hit_effect.generate_hit_effect(tip.global_position)
+	take_back(back_duration, init_position)
 
 func pull_hookshot_to_tip() -> void:
 	var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
@@ -88,12 +90,10 @@ func pull_hookshot_to_tip() -> void:
 		back_direction_offset_distance = Vector2(-back_offset_distance / 2, 0)
 	
 	var target_pos: Vector2 = tip.global_position + back_direction_offset_distance
-	print("hook will to pos %s" %target_pos)
 	var target_player_pos: Vector2 = target_pos
 	if shoot_direction == Vector2.LEFT || shoot_direction == Vector2.RIGHT:
 		target_player_pos = target_pos + Vector2(0, player_positon_offset_y)
 	
-	print("player will to pos %s" %target_player_pos)
 	var tween_pull: Tween = create_tween().set_parallel()
 
 	tween_pull.tween_property(links, "offset", Vector2(0.0, 0.0), back_duration)
