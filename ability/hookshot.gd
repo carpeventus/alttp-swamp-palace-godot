@@ -4,13 +4,13 @@ class_name Hookshot extends Node2D
 @export var back_duration: float = 0.3
 
 @export var player_positon_offset_y: float = 8.0
-@export var back_offset_distance: float = 16.0
+@export var back_offset_distance: float = 8.0
 
 @onready var tip: Area2D = $HookableTip
 @onready var links: Sprite2D = $Links
-@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $Tip/VisibleOnScreenNotifier2D
-@onready var hit_effect: HitEffectComponent = $Tip/HitEffectComponent
-@onready var area_detect_others: Area2D = $Tip/AreaDetectOthers
+@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $HookableTip/VisibleOnScreenNotifier2D
+@onready var hit_effect: HitEffectComponent = $HookableTip/HitEffectComponent
+@onready var area_detect_others: Area2D = $HookableTip/AreaDetectOthers
 
 
 signal free_signal
@@ -70,7 +70,6 @@ func _on_body_enterd_tip(body: Node2D) -> void:
 		pull_hookshot_to_tip()
 
 func _on_body_enterd(body: Node2D) -> void:
-	print(body.name)
 	hit_effect.generate_hit_effect(tip.global_position)
 	take_back(back_duration, init_position)
 
@@ -83,22 +82,19 @@ func pull_hookshot_to_tip() -> void:
 	if shoot_direction == Vector2.DOWN:
 		back_direction_offset_distance = Vector2(0, 0)
 	elif shoot_direction == Vector2.UP:
-		back_direction_offset_distance = Vector2(0, back_offset_distance)
+		back_direction_offset_distance = Vector2(0, 2 * back_offset_distance)
 	elif shoot_direction == Vector2.LEFT:
-		back_direction_offset_distance = Vector2(back_offset_distance / 2, 0)
+		back_direction_offset_distance = Vector2(back_offset_distance, player_positon_offset_y)
 	elif shoot_direction == Vector2.RIGHT:
-		back_direction_offset_distance = Vector2(-back_offset_distance / 2, 0)
+		back_direction_offset_distance = Vector2(-back_offset_distance, player_positon_offset_y)
 	
-	var target_pos: Vector2 = tip.global_position + back_direction_offset_distance
-	var target_player_pos: Vector2 = target_pos
-	if shoot_direction == Vector2.LEFT || shoot_direction == Vector2.RIGHT:
-		target_player_pos = target_pos + Vector2(0, player_positon_offset_y)
+	var target_player_pos: Vector2 = tip.global_position + back_direction_offset_distance
 	
 	var tween_pull: Tween = create_tween().set_parallel()
 
 	tween_pull.tween_property(links, "offset", Vector2(0.0, 0.0), back_duration)
 	tween_pull.tween_property(links, "region_rect", Rect2(0, 0, 0, 8), back_duration)
-	tween_pull.tween_property(links, "global_position", target_pos, back_duration)
+	tween_pull.tween_property(links, "global_position", tip.global_position, back_duration)
 	tween_pull.tween_property(player, "global_position", target_player_pos, back_duration)
 	await tween_pull.finished
 	destory_self()

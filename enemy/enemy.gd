@@ -19,12 +19,14 @@ func _on_die() -> void:
 	queue_free()
 	
 func _on_hurt(damage_source: Damage) -> void:
-	if damage_source.make_stun:
-		pass
-	elif health_compoent.current_health > 0:
+	if health_compoent.current_health > 0:
 		var attack_direction: Vector2 = (global_position - damage_source.source.global_position).normalized()
 		if attack_direction == Vector2.ZERO:
 			attack_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 		velocity = knockback_force * attack_direction
 		var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(self, "velocity", Vector2.ZERO, 0.4)
+		## todo stun
+		if damage_source.make_stun:
+			pass
+

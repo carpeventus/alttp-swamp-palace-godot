@@ -34,14 +34,6 @@
 [ext_resource type="Texture2D" uid="uid://ch4kccrrkeu5w" path="res://assets/link/link_boomerang.png" id="25_hyadb"]
 [ext_resource type="Texture2D" uid="uid://etm3x0mmhba1" path="res://assets/link/link_hookshot.png" id="30_r1v2q"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jcrg"]
-radius = 6.0
-height = 12.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pq0w0"]
-radius = 6.0
-height = 12.0
-
 [sub_resource type="Animation" id="Animation_7l4dy"]
 length = 0.001
 tracks/0/type = "value"
@@ -3622,6 +3614,14 @@ _data = {
 "walk_up": SubResource("Animation_ewakd")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jcrg"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pq0w0"]
+radius = 6.0
+height = 16.0
+
 [sub_resource type="Shader" id="Shader_fd04w"]
 code = "shader_type canvas_item;
 
@@ -3667,6 +3667,7 @@ shader_parameter/mix_ratio = 1.0
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_layer = 2
+collision_mask = 33
 motion_mode = 1
 script = ExtResource("1_x72g7")
 enable_sword_energy = true
@@ -3728,18 +3729,6 @@ unique_name_in_owner = true
 [node name="HookshotAbilityController" parent="AbilityControllers" instance=ExtResource("19_g3pk8")]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, -12)
-shape = SubResource("CapsuleShape2D_0jcrg")
-
-[node name="HurtArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 20
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2(2.08165e-12, -12)
-shape = SubResource("CapsuleShape2D_pq0w0")
-
 [node name="DamageImmuneTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -3777,6 +3766,18 @@ texture = ExtResource("14_etot4")
 offset = Vector2(2.08165e-12, -16)
 region_enabled = true
 region_rect = Rect2(96, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_0jcrg")
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_pq0w0")
 
 [node name="ShiledEquipment" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_g074g")

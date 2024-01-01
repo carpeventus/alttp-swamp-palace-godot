@@ -1,58 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://m2cr00nvt8ce"]
+[gd_scene load_steps=10 format=3 uid="uid://del3rhu1cj7ej"]
 
-[ext_resource type="Script" path="res://ability/arrow.gd" id="1_fjnin"]
-[ext_resource type="PackedScene" uid="uid://bfa1b87ck72yk" path="res://component/hit_box.tscn" id="2_naeci"]
-[ext_resource type="Texture2D" uid="uid://sr3228yxi0qb" path="res://assets/items/arrow.png" id="3_8f6fl"]
+[ext_resource type="Texture2D" uid="uid://bmhuwfl50bqlg" path="res://assets/entities/chest.png" id="1_37dbl"]
+[ext_resource type="Script" path="res://entities/chest.gd" id="1_7065e"]
+[ext_resource type="PackedScene" uid="uid://b18kxjau73ls1" path="res://entities/interactable.tscn" id="2_5gffl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tclrd"]
-size = Vector2(16, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfgvy"]
+size = Vector2(16, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxiq"]
-size = Vector2(16, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmnbq"]
+size = Vector2(16, 16)
 
-[sub_resource type="Animation" id="Animation_crnc4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 16, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_egbgw"]
-resource_name = "fly"
+[sub_resource type="Animation" id="Animation_mrrm8"]
+resource_name = "default"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,10 +50,8 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_5he2r"]
-resource_name = "hit"
-length = 0.45
-step = 0.05
+[sub_resource type="Animation" id="Animation_ehej8"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,62 +62,103 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 0, 144, 16)]
+"values": [Rect2(0, 0, 16, 16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0lf1j"]
+[sub_resource type="Animation" id="Animation_8a6nc"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j65pl"]
 _data = {
-"RESET": SubResource("Animation_crnc4"),
-"fly": SubResource("Animation_egbgw"),
-"hit": SubResource("Animation_5he2r")
+"RESET": SubResource("Animation_ehej8"),
+"default": SubResource("Animation_mrrm8"),
+"open": SubResource("Animation_8a6nc")
 }
 
-[node name="Arrow" type="Area2D"]
-collision_layer = 64
-collision_mask = 37
-script = ExtResource("1_fjnin")
+[node name="Chest" type="StaticBody2D"]
+collision_layer = 32
+script = ExtResource("1_7065e")
+
+[node name="Interactable" parent="." instance=ExtResource("2_5gffl")]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_gfgvy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_tclrd")
-
-[node name="HitBox" parent="." instance=ExtResource("2_naeci")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_2hxiq")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_xmnbq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8f6fl")
+texture = ExtResource("1_37dbl")
+offset = Vector2(2.08165e-12, -8)
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0lf1j")
+"": SubResource("AnimationLibrary_j65pl")
 }
-autoplay = "fly"
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+autoplay = "default"

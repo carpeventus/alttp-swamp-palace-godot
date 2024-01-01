@@ -28,7 +28,7 @@ func init_abilities() -> void:
 	## TODO test
 	add_ability(hookshot_ability)
 	# default selected bow and arrow
-	select_ability(hookshot_ability.id)
+	select_ability(boomerang_ability.id)
 
 func select_ability(ability_id: String) -> void:
 	current_selected_ability_id = ability_id

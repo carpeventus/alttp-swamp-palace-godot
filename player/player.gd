@@ -23,6 +23,8 @@ class_name Player extends CharacterBody2D
 var is_dead: bool = false
 var forbidden_input: bool = false
 var damage_hold: Dictionary = {}
+var interactable_hold: Dictionary = {}
+
 var hurt_blink_tween: Tween
 
 var input_direction: Vector2 = Vector2.ZERO
@@ -127,7 +129,11 @@ func init_body_animation_params() -> void:
 	animation_tree["parameters/Walk/blend_position"] =  Vector2.ZERO
 #endregion
 
+func regist_interactable(interactable: Interactable) -> void:
+	interactable_hold[interactable.name] = interactable
 
+func unregist_interactable(interactable: Interactable) -> void:
+	interactable_hold.erase(interactable.name)
 
 #region input
 func _unhandled_input(event: InputEvent) -> void:
@@ -135,6 +141,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		can_loading = true
 	elif event.is_action_released("sword_attack"):
 		can_loading = false
+	elif event.is_action_released("interact") and interactable_hold.size() > 0:
+		var last_interactable : Interactable = interactable_hold.values()[interactable_hold.size() - 1]
+		last_interactable.interact()
 		
 func handle_input(delta: float) -> void:
 	if forbidden_input:

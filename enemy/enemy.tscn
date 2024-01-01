@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://f0am1bidysrd" path="res://component/hurt_box.tscn" id="3_jx57u"]
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_4ld2p")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_4pylb")]

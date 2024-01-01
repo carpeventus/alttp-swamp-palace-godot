@@ -75,8 +75,8 @@ scale_max = 0.8
 scale_curve = SubResource("CurveTexture_m1coh")
 
 [node name="Boomerang" type="Area2D"]
-collision_layer = 0
-collision_mask = 5
+collision_layer = 64
+collision_mask = 37
 script = ExtResource("1_ixdbh")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -88,6 +88,7 @@ shape = SubResource("CircleShape2D_x4fbh")
 
 [node name="HitBox" parent="." instance=ExtResource("1_ys3dm")]
 damage = 0
+make_stun = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -8)
