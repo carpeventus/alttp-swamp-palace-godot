@@ -5,6 +5,7 @@ class_name Enemy extends CharacterBody2D
 
 @onready var health_compoent: HealthComponent = $HealthComponent as HealthComponent
 @onready var hurt_box: HurtBox = $HurtBox
+@onready var enmey_death_effect_component: EnemyDeathEffectComponent = $EnmeyDeathEffectComponent
 
 
 func _ready() -> void:
@@ -15,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _on_die() -> void:
-	## todo dead effect
+	enmey_death_effect_component.generate_death_effect(global_position)
 	queue_free()
 	
 func _on_hurt(damage_source: Damage) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b7yvpw7xtv7g6"]
 
 [ext_resource type="Texture2D" uid="uid://b4q1g6ncbsksy" path="res://assets/items/projectile_hit_effect.png" id="1_lfm72"]
-[ext_resource type="Script" path="res://component/hit_effect.gd" id="2_wn1ig"]
+[ext_resource type="Script" path="res://effects/hit_effect.gd" id="2_wn1ig"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ciws"]
 atlas = ExtResource("1_lfm72")

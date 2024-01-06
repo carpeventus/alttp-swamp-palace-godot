@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rg2y3x78idy2"]
 
 [ext_resource type="PackedScene" uid="uid://2wdtrpxfh2ae" path="res://player/player.tscn" id="1_4hkn1"]
-[ext_resource type="PackedScene" uid="uid://dbsuq0ih5n4fg" path="res://enemy/basic_enemy.tscn" id="2_mr3sg"]
+[ext_resource type="PackedScene" uid="uid://dbsuq0ih5n4fg" path="res://enemy/red_bari.tscn" id="2_mr3sg"]
 [ext_resource type="PackedScene" uid="uid://del3rhu1cj7ej" path="res://entities/chest.tscn" id="3_jv7yw"]
 
 [node name="LightWorld" type="Node2D"]
@@ -18,9 +18,7 @@ position = Vector2(232, 139)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Player"]
 remote_path = NodePath("../../../Camera2D")
 
-[node name="BasicEnemy" parent="." instance=ExtResource("2_mr3sg")]
-position = Vector2(163, 135)
-collision_mask = 1
+[node name="RedBari" parent="." instance=ExtResource("2_mr3sg")]
 
 [node name="Chest" parent="." instance=ExtResource("3_jv7yw")]
 position = Vector2(232, 89)

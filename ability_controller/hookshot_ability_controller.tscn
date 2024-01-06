@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c15vimgh2l1ei"]
 
-[ext_resource type="Script" path="res://hookshot_ability_controller.gd" id="1_v4vmr"]
+[ext_resource type="Script" path="res://ability_controller/hookshot_ability_controller.gd" id="1_cr3o0"]
 
 [node name="HookshotAbilityController" type="Node"]
-script = ExtResource("1_v4vmr")
+script = ExtResource("1_cr3o0")

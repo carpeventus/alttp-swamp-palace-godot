@@ -2,7 +2,7 @@ class_name HitEffectComponent extends Node
 
 @export var spawn_pos_offset: Vector2 = Vector2.ZERO
 
-var hit_effect_scene: PackedScene = preload("res://component/hit_effect.tscn")
+var hit_effect_scene: PackedScene = preload("res://effects/hit_effect.tscn")
 
 func generate_hit_effect(pos: Vector2) -> void:
 	var spawn_positon: Vector2 = pos + spawn_pos_offset

@@ -1,0 +1,167 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbsuq0ih5n4fg"]
+
+[ext_resource type="Script" path="res://enemy/red_bari.gd" id="1_8o5gu"]
+[ext_resource type="PackedScene" uid="uid://bs2ryslk7pxxh" path="res://enemy/enemy.tscn" id="1_i5j5h"]
+[ext_resource type="Texture2D" uid="uid://dur61jn3l08ni" path="res://assets/enemies/red_bari.png" id="3_gch2p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_peulv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_trgcu"]
+
+[sub_resource type="Animation" id="Animation_bxdvp"]
+resource_name = "moving"
+length = 0.32
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_nf5gr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_meh65"]
+resource_name = "attack"
+length = 0.22
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(64, 0, 64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5ggb"]
+_data = {
+"RESET": SubResource("Animation_nf5gr"),
+"attack": SubResource("Animation_meh65"),
+"moving": SubResource("Animation_bxdvp")
+}
+
+[node name="RedBari" instance=ExtResource("1_i5j5h")]
+script = ExtResource("1_8o5gu")
+
+[node name="HurtBox" parent="." index="1"]
+scale = Vector2(0.998796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_peulv")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_gch2p")
+offset = Vector2(2.08165e-12, -8)
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_trgcu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_j5ggb")
+}
+autoplay = "moving"
+
+[node name="EnmeyDeathEffectComponent" parent="." index="5"]
+spawn_pos_offset = Vector2(2.08165e-12, -8)
