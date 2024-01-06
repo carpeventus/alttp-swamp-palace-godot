@@ -62,7 +62,6 @@ func _process(delta: float) -> void:
 
 #region hurtdead
 func _on_hurt_body_entered(body: Node2D) -> void:
-	print("hit player by body" + body.owner.name)
 	if body is Enemy:
 		var damage_instance: Damage = Damage.new()
 		damage_instance.amount = body.damage
@@ -74,7 +73,6 @@ func _on_hurt_body_exited(body: Node2D) -> void:
 	damage_hold.erase(body.name)
 	
 func _on_hurt_area_entered(area: Area2D) -> void:
-	print("hit player by area" + area.owner.name)
 	if area is HitAllBox:
 		var damage_instance: Damage = Damage.new()
 		damage_instance.amount = area.damage

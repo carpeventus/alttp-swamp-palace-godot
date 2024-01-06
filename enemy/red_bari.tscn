@@ -1,53 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbsuq0ih5n4fg"]
+[gd_scene load_steps=13 format=3 uid="uid://dbsuq0ih5n4fg"]
 
 [ext_resource type="Script" path="res://enemy/red_bari.gd" id="1_8o5gu"]
 [ext_resource type="PackedScene" uid="uid://bs2ryslk7pxxh" path="res://enemy/enemy.tscn" id="1_i5j5h"]
 [ext_resource type="Texture2D" uid="uid://dur61jn3l08ni" path="res://assets/enemies/red_bari.png" id="3_gch2p"]
+[ext_resource type="PackedScene" uid="uid://bs6h8lfsqrs78" path="res://component/enemy_death_effect_component.tscn" id="4_abl51"]
+[ext_resource type="PackedScene" uid="uid://bo6w8gmktj5fs" path="res://component/hit_flash_effect_component.tscn" id="5_jhj71"]
+[ext_resource type="Material" uid="uid://cp6d3kt86wp1j" path="res://enemy/enemy_hit_flash_shader.tres" id="6_8w5tb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_peulv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_trgcu"]
-
-[sub_resource type="Animation" id="Animation_bxdvp"]
-resource_name = "moving"
-length = 0.32
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 32)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
 
 [sub_resource type="Animation" id="Animation_nf5gr"]
 length = 0.001
@@ -129,6 +91,47 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_bxdvp"]
+resource_name = "moving"
+length = 0.32
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5ggb"]
 _data = {
 "RESET": SubResource("Animation_nf5gr"),
@@ -139,6 +142,9 @@ _data = {
 [node name="RedBari" instance=ExtResource("1_i5j5h")]
 script = ExtResource("1_8o5gu")
 
+[node name="HealthComponent" parent="." index="0"]
+max_health = 3
+
 [node name="HurtBox" parent="." index="1"]
 scale = Vector2(0.998796, 1)
 
@@ -147,6 +153,7 @@ position = Vector2(2.08165e-12, -8)
 shape = SubResource("CircleShape2D_peulv")
 
 [node name="Sprite2D" parent="." index="2"]
+material = ExtResource("6_8w5tb")
 texture = ExtResource("3_gch2p")
 offset = Vector2(2.08165e-12, -8)
 hframes = 2
@@ -163,5 +170,13 @@ libraries = {
 }
 autoplay = "moving"
 
-[node name="EnmeyDeathEffectComponent" parent="." index="5"]
+[node name="DirectionChangeTimer" type="Timer" parent="." index="6"]
+autostart = true
+
+[node name="EnemyDeathEffectComponent" parent="." index="7" instance=ExtResource("4_abl51")]
 spawn_pos_offset = Vector2(2.08165e-12, -8)
+
+[node name="HitFlashEffectComponent" parent="." index="8" node_paths=PackedStringArray("hurt_box", "sprite") instance=ExtResource("5_jhj71")]
+hurt_box = NodePath("../HurtBox")
+sprite = NodePath("../Sprite2D")
+hit_effect_shader = ExtResource("6_8w5tb")

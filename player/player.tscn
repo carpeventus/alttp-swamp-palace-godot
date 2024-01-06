@@ -3670,7 +3670,6 @@ collision_layer = 2
 collision_mask = 33
 motion_mode = 1
 script = ExtResource("1_x72g7")
-enable_sword_energy = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_f4dtd")

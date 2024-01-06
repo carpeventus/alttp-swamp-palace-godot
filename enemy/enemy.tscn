@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4ld2p"]
 [ext_resource type="PackedScene" uid="uid://b83jf2my7qspc" path="res://component/health_component.tscn" id="2_4pylb"]
 [ext_resource type="PackedScene" uid="uid://f0am1bidysrd" path="res://component/hurt_box.tscn" id="3_jx57u"]
-[ext_resource type="PackedScene" uid="uid://bs6h8lfsqrs78" path="res://component/enmey_death_effect_component.tscn" id="4_vv2i5"]
+[ext_resource type="PackedScene" uid="uid://fxjg056gd1l0" path="res://component/velocity_component.tscn" id="5_nmvub"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -17,4 +17,4 @@ health_component = NodePath("../HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="EnmeyDeathEffectComponent" parent="." instance=ExtResource("4_vv2i5")]
+[node name="VelocityComponent" parent="." instance=ExtResource("5_nmvub")]

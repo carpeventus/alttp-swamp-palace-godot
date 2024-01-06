@@ -56,6 +56,4 @@ animations = [{
 [node name="DeathEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_aab21")
 autoplay = "default"
-frame = 5
-frame_progress = 1.0
 script = ExtResource("2_8c1qg")

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs6h8lfsqrs78"]
-
-[ext_resource type="Script" path="res://component/enmey_death_effect_component.gd" id="1_h6si6"]
-
-[node name="EnmeyDeathEffectComponent" type="Node"]
-script = ExtResource("1_h6si6")

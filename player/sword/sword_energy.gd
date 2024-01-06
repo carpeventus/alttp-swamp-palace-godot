@@ -8,6 +8,7 @@ class_name SwordEnergy extends Area2D
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 var fly_direction: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
@@ -24,4 +25,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	fly_speed = 0.0
 	hit_effect.generate_hit_effect(global_position)
+	destroy_self()
+
+func destroy_self() -> void:
 	queue_free()

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cp6d3kt86wp1j"]
+
+[ext_resource type="Shader" path="res://enemy/enemy_hit_effect.gdshader" id="1_qc1va"]
+
+[resource]
+shader = ExtResource("1_qc1va")
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 0.0
+shader_parameter/color1 = Color(1, 1, 0.941176, 1)
+shader_parameter/color2 = Color(1, 0.25098, 0, 1)
+shader_parameter/color3 = Color(0.752941, 0.25098, 0, 1)
+shader_parameter/color4 = Color(1, 1, 0.941176, 1)

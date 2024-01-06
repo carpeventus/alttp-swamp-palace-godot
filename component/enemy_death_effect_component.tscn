@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs6h8lfsqrs78"]
+
+[ext_resource type="Script" path="res://component/enemy_death_effect_component.gd" id="1_va6tt"]
+
+[node name="EnemyDeathEffectComponent" type="Node"]
+script = ExtResource("1_va6tt")
