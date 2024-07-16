@@ -17,5 +17,3 @@ func sword_attack() -> void:
 	player.shield.attack(player.face_direction)
 	if player.enable_sword_energy:
 		player.sword.generate_sword_enegy(player.face_direction)
-
-

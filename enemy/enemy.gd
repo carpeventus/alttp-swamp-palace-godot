@@ -48,4 +48,3 @@ func _on_hurt(damage_source: Damage) -> void:
 	if health_compoent.current_health <= 0 and not is_dead:
 		died_signal.emit()
 	
-

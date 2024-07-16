@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 
 #region 测试
-@export var enable_sword_energy: bool = false
+@export var enable_sword_energy: bool = true
 #endregion
 
 @export var sword_loading_need_hold_time: float = 0.24
@@ -169,4 +169,3 @@ func handle_input(delta: float) -> void:
 		# 这里
 	#endregion
 	
-

@@ -17,4 +17,3 @@ func shoot() -> void:
 	player.animation_tree["parameters/ArrowShoot/blend_position"] = player.face_direction
 	player.anim_playback.travel("ArrowShoot")
 	
-

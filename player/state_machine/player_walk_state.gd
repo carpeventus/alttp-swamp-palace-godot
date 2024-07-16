@@ -17,4 +17,3 @@ func logic_update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	player.velocity = player.input_direction * move_speed
-

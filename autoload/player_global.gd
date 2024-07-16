@@ -1,6 +1,7 @@
 extends Node
 
 @onready var health_component: HealthComponent = $HealthComponent as HealthComponent
+@export var default_ability_id: String = "arrow_ability"
 
 signal player_died_signal
 
@@ -27,14 +28,15 @@ func init_abilities() -> void:
 	add_ability(boomerang_ability)
 	## TODO test
 	add_ability(hookshot_ability)
-	# default selected bow and arrow
-	select_ability(boomerang_ability.id)
+	select_ability(default_ability_id)
+	
 
 func select_ability(ability_id: String) -> void:
 	current_selected_ability_id = ability_id
 	
 func add_ability(ability_resource: AbilityResource) -> void:
 	ability_dict[ability_resource.id] = ability_resource.related_state
+
 
 func get_current_ability_state() -> String:
 	return ability_dict[current_selected_ability_id]
@@ -45,3 +47,4 @@ func _ready() -> void:
 
 func _on_player_died() -> void:
 	player_died_signal.emit()
+	

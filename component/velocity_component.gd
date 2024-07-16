@@ -19,4 +19,3 @@ func accelerate_to_player() -> void:
 		var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
 		var direction: Vector2 =  (player.global_position - owner.global_position).normalized()
 		accelerate_in_direction(direction)
-

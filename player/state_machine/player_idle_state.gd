@@ -18,5 +18,3 @@ func logic_update(delta: float) -> void:
 func on_enter() -> void:
 	player.velocity = Vector2.ZERO
 	
-
-
